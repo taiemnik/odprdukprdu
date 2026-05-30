@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kryton — materiály | Od prdu k PRDu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a; --card: #141414; --text: #f5f5f5; --muted: #9ca3af;
+      --lime: #d9faa7; --border: #2a2a2a;
+      --sans: "Inter", sans-serif; --mono: "JetBrains Mono", monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--lime); }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 32px 20px 64px; }
+    .top { margin-bottom: 40px; }
+    .back { font-size: .9rem; color: var(--muted); }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 800; margin: 12px 0 8px; }
+    .sub { color: var(--muted); max-width: 720px; }
+    h2 { font-size: 1.35rem; margin: 48px 0 20px; }
+    .platforms { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 24px; }
+    .plat {
+      background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .plat-head { display: flex; align-items: center; gap: 12px; }
+    .plat-icon {
+      width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 14px; font-family: var(--mono);
+    }
+    .plat-icon.claude { background: #d97757; color: #fff; }
+    .plat-icon.gpt { background: #10a37f; color: #fff; }
+    .plat-icon.gem { background: #4285f4; color: #fff; }
+    .plat h3 { font-size: 1.1rem; }
+    .steps { font-size: .88rem; color: var(--muted); padding-left: 1.1rem; }
+    .steps li { margin-bottom: 6px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 8px; }
+    .btn {
+      font-family: inherit; font-size: .85rem; font-weight: 600; cursor: pointer;
+      padding: 8px 14px; border-radius: 8px; border: none; text-decoration: none; display: inline-block;
+    }
+    .btn-dl { background: var(--lime); color: #0a0a0a; }
+    .btn-copy { background: transparent; color: var(--lime); border: 1px solid rgba(217,250,167,.35); }
+    .btn-copy.ok { background: rgba(217,250,167,.15); }
+    .test-box {
+      background: rgba(217,250,167,.06); border: 1px dashed rgba(217,250,167,.35);
+      border-radius: 12px; padding: 16px 20px; font-size: .9rem; color: var(--muted);
+    }
+    .test-box strong { color: var(--lime); }
+    .extras { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .extra {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px;
+    }
+    .extra h3 { font-size: 1rem; margin-bottom: 6px; }
+    .extra p { font-size: .85rem; color: var(--muted); margin-bottom: 12px; }
+    .zip-row { margin-top: 32px; text-align: center; }
+    .toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+      background: var(--lime); color: #0a0a0a; padding: 10px 20px; border-radius: 8px;
+      font-weight: 600; font-size: .9rem; opacity: 0; transition: opacity .25s; pointer-events: none;
+    }
+    .toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="back" href="../">← Od prdu k PRDu</a>
+      <h1>Kterou AI používáš?</h1>
+      <p class="sub"><strong>Kryton, řada 4000</strong> — mechanický asistent, který z neurčitého nápadu vyplivne PRD a Master Prompt. Stejná logika ve třech platformách.</p>
+    </header>
+
+    <div class="platforms">
+      <article class="plat">
+        <div class="plat-head">
+          <div class="plat-icon claude">Cl</div>
+          <h3>Claude Project</h3>
+        </div>
+        <ol class="steps">
+          <li>Projects → New Project</li>
+          <li>Project Instructions → vlož celý soubor</li>
+          <li>Test: „Mám nápad na aplikaci.“</li>
+        </ol>
+        <div class="actions">
+          <a class="btn btn-dl" href="../download/kryton-claude-project.md" download>Stáhnout .md</a>
+          <button type="button" class="btn btn-copy" data-file="../download/kryton-claude-project.md">Kopírovat instrukce</button>
+        </div>
+      </article>
+
+      <article class="plat">
+        <div class="plat-head">
+          <div class="plat-icon gpt">GPT</div>
+          <h3>ChatGPT Custom GPT</h3>
+        </div>
+        <ol class="steps">
+          <li>Explore GPTs → Create</li>
+          <li>Name, Description, Instructions ze souboru</li>
+          <li>Přidej 4 conversation starters</li>
+        </ol>
+        <div class="actions">
+          <a class="btn btn-dl" href="../download/kryton-chatgpt-gpt.md" download>Stáhnout .md</a>
+          <button type="button" class="btn btn-copy" data-file="../download/kryton-chatgpt-gpt.md">Kopírovat instrukce</button>
+        </div>
+      </article>
+
+      <article class="plat">
+        <div class="plat-head">
+          <div class="plat-icon gem">Gem</div>
+          <h3>Gemini Gem</h3>
+        </div>
+        <ol class="steps">
+          <li>Gem manager → New Gem</li>
+          <li>Instructions ze souboru</li>
+          <li>Drž roli — Gemini občas uteče</li>
+        </ol>
+        <div class="actions">
+          <a class="btn btn-dl" href="../download/kryton-gemini-gem.md" download>Stáhnout .md</a>
+          <button type="button" class="btn btn-copy" data-file="../download/kryton-gemini-gem.md">Kopírovat instrukce</button>
+        </div>
+      </article>
+    </div>
+
+    <div class="test-box">
+      <strong>Test po nasazení:</strong> Napiš „Mám nápad na aplikaci.“ — Kryton se představí, osloví tě „Pane“ a položí <em>3 otázky Fáze 1</em>. Neskočí rovnou na kód.
+    </div>
+
+    <p style="margin-top:16px;font-size:.9rem;color:var(--muted)">
+      <a href="../download/kryton-navod-nasazeni.md">Kompletní návod nasazení (MD)</a>
+    </p>
+
+    <h2 id="dalsi">Další materiály</h2>
+    <div class="extras">
+      <div class="extra">
+        <h3>PRD šablona (AIMEE)</h3>
+        <p>Problem-first struktura pro stavitele.</p>
+        <a class="btn btn-dl" href="../download/prd-sablona-aimee.md" download>Stáhnout</a>
+      </div>
+      <div class="extra">
+        <h3>Dev-flow checklist</h3>
+        <p>Od prd k shipu — zaškrtávací seznam.</p>
+        <a class="btn btn-dl" href="../download/dev-flow-checklist.md" download>Stáhnout</a>
+      </div>
+      <div class="extra">
+        <h3>QR platby — prompt</h3>
+        <p>Ukázkový Master Prompt pro rodiče.</p>
+        <a class="btn btn-dl" href="../download/qr-platby-rodice-prompt.md" download>Stáhnout</a>
+      </div>
+      <div class="extra">
+        <h3>Master Prompt — vzor</h3>
+        <p>Výstup Fáze 3 od Krytona.</p>
+        <a class="btn btn-dl" href="../download/master-prompt-vzor.md" download>Stáhnout</a>
+      </div>
+    </div>
+
+    <div class="zip-row">
+      <a class="btn btn-dl" href="../download/odprdukprdu-kryton-materialy.zip">Stáhnout vše (.zip)</a>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Zkopírováno do schránky</div>
+
+  <script>
+    const toast = document.getElementById('toast');
+    function showToast() {
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+    }
+    document.querySelectorAll('.btn-copy').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        try {
+          const res = await fetch(btn.dataset.file);
+          const text = await res.text();
+          await navigator.clipboard.writeText(text);
+          btn.classList.add('ok');
+          btn.textContent = 'Zkopírováno';
+          showToast();
+          setTimeout(() => { btn.classList.remove('ok'); btn.textContent = 'Kopírovat instrukce'; }, 2500);
+        } catch (e) {
+          alert('Kopírování selhalo — stáhni .md a vlož ručně.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
