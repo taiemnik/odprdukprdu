@@ -17,27 +17,20 @@
     h1 { font-size:clamp(1.8rem,4vw,2.5rem); font-weight:800; margin:12px 0 8px; }
     .sub { color:var(--muted); max-width:720px; }
     .disclaimer { margin-top:12px; font-style:italic; color:var(--muted); font-size:.9rem; }
-    h2 { font-size:1.35rem; margin:48px 0 20px; }
-    .platforms { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; margin-bottom:24px; }
+    .platforms { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px; margin:32px 0 24px; }
     .plat { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:24px; display:flex; flex-direction:column; gap:12px; }
     .plat-head { display:flex; align-items:center; gap:12px; }
     .plat-icon { width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; font-family:var(--mono); }
     .plat-icon.claude { background:#d97757; color:#fff; }
     .plat-icon.gpt { background:#10a37f; color:#fff; }
     .plat-icon.gem { background:#4285f4; color:#fff; }
-    .steps { font-size:.88rem; color:var(--muted); padding-left:1.1rem; }
-    .steps li { margin-bottom:6px; }
+    .plat-desc { font-size:.88rem; color:var(--muted); }
     .actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; padding-top:8px; }
     .btn { font-family:inherit; font-size:.85rem; font-weight:600; cursor:pointer; padding:10px 16px; border-radius:8px; border:none; text-decoration:none; display:inline-block; }
-    .btn-open { background:var(--lime); color:#0a0a0a; }
-    .btn-dl { background:transparent; color:var(--lime); border:1px solid rgba(217,250,167,.35); }
+    .btn-pokyny { background:var(--lime); color:#0a0a0a; }
+    .btn-navod { background:transparent; color:var(--lime); border:1px solid rgba(217,250,167,.35); }
     .test-box { background:rgba(217,250,167,.06); border:1px dashed rgba(217,250,167,.35); border-radius:12px; padding:16px 20px; font-size:.9rem; color:var(--muted); }
     .test-box strong { color:var(--lime); }
-    .extras { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
-    .extra { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; }
-    .extra h3 { font-size:1rem; margin-bottom:6px; }
-    .extra p { font-size:.85rem; color:var(--muted); margin-bottom:12px; }
-    .zip-row { margin-top:32px; text-align:center; }
     .modal { position:fixed; inset:0; z-index:500; background:rgba(0,0,0,.85); display:none; align-items:center; justify-content:center; padding:20px; }
     .modal.open { display:flex; }
     .modal-box { background:var(--card); border:1px solid var(--border); border-radius:16px; width:min(920px,96vw); max-height:88vh; display:flex; flex-direction:column; overflow:hidden; }
@@ -54,57 +47,47 @@
     <header>
       <a class="back" href="../">← Od prdu k PRDu</a>
       <h1>Asistent na prd</h1>
-      <p class="sub">Mechanický servisní android s britským humorem — promění neurčitý nápad v PRD a Master Prompt. Stejná logika pro Claude, ChatGPT a Gemini.</p>
+      <p class="sub">Servisní android s humorem Červeného trpaslíka — promění neurčitý nápad v PRD a Master Prompt.</p>
       <p class="disclaimer">Nepoužívat, pokud nemáte rádi Červeného trpaslíka.</p>
     </header>
 
     <div class="platforms">
       <article class="plat">
         <div class="plat-head"><div class="plat-icon gpt">GPT</div><h3>ChatGPT · Custom GPT</h3></div>
-        <ol class="steps"><li>Explore GPTs → Create</li><li>Name, Description, Instructions ze souboru</li><li>4 conversation starters</li></ol>
+        <p class="plat-desc"><strong>Návod</strong> — kam kliknout, co vyplnit, co zaškrtnout.<br><strong>Pokyny</strong> — čistý text do pole Instructions.</p>
         <div class="actions">
-          <button type="button" class="btn btn-open" data-file="../download/asistent-na-prd-chatgpt.md" data-title="ChatGPT · Custom GPT">Otevřít instrukce</button>
-          <a class="btn btn-dl" href="../download/asistent-na-prd-chatgpt.md" download>Stáhnout .md</a>
+          <button type="button" class="btn btn-navod modal-open" data-file="../download/asistent-navod-chatgpt.md" data-title="ChatGPT · Návod">Návod</button>
+          <button type="button" class="btn btn-pokyny modal-open" data-file="../download/asistent-pokyny-chatgpt.md" data-title="ChatGPT · Pokyny">Pokyny</button>
         </div>
       </article>
       <article class="plat">
         <div class="plat-head"><div class="plat-icon claude">Cl</div><h3>Claude · Project</h3></div>
-        <ol class="steps"><li>Projects → New Project</li><li>Project Instructions → celý soubor</li><li>Test: „Mám nápad na aplikaci."</li></ol>
+        <p class="plat-desc"><strong>Návod</strong> — Project Instructions.<br><strong>Pokyny</strong> — celý obsah pole.</p>
         <div class="actions">
-          <button type="button" class="btn btn-open" data-file="../download/asistent-na-prd-claude.md" data-title="Claude · Project">Otevřít instrukce</button>
-          <a class="btn btn-dl" href="../download/asistent-na-prd-claude.md" download>Stáhnout .md</a>
+          <button type="button" class="btn btn-navod modal-open" data-file="../download/asistent-navod-claude.md" data-title="Claude · Návod">Návod</button>
+          <button type="button" class="btn btn-pokyny modal-open" data-file="../download/asistent-pokyny-claude.md" data-title="Claude · Pokyny">Pokyny</button>
         </div>
       </article>
       <article class="plat">
         <div class="plat-head"><div class="plat-icon gem">Gem</div><h3>Gemini · Gem</h3></div>
-        <ol class="steps"><li>Gems → New Gem</li><li>Instructions ze souboru</li><li>Drž roli — Gemini občas uteče</li></ol>
+        <p class="plat-desc"><strong>Návod</strong> — New Gem, Instructions.<br><strong>Pokyny</strong> — čistý system prompt.</p>
         <div class="actions">
-          <button type="button" class="btn btn-open" data-file="../download/asistent-na-prd-gemini.md" data-title="Gemini · Gem">Otevřít instrukce</button>
-          <a class="btn btn-dl" href="../download/asistent-na-prd-gemini.md" download>Stáhnout .md</a>
+          <button type="button" class="btn btn-navod modal-open" data-file="../download/asistent-navod-gemini.md" data-title="Gemini · Návod">Návod</button>
+          <button type="button" class="btn btn-pokyny modal-open" data-file="../download/asistent-pokyny-gemini.md" data-title="Gemini · Pokyny">Pokyny</button>
         </div>
       </article>
     </div>
 
     <div class="test-box"><strong>Test:</strong> „Mám nápad na aplikaci." — asistent se představí, osloví „Pane" a položí 3 otázky. Neskočí rovnou na kód.</div>
-    <p style="margin-top:12px;font-size:.9rem;color:var(--muted)"><a href="../download/asistent-na-prd-navod.md">Kompletní návod nasazení (MD)</a></p>
-
-    <h2 id="dalsi">Další materiály</h2>
-    <div class="extras">
-      <div class="extra"><h3>PRD šablona (AIMEE)</h3><p>Problem-first struktura.</p><a class="btn btn-dl" href="../download/prd-sablona-aimee.md" download>Stáhnout</a></div>
-      <div class="extra"><h3>Dev-flow checklist</h3><p>Od prd k shipu.</p><a class="btn btn-dl" href="../download/dev-flow-checklist.md" download>Stáhnout</a></div>
-      <div class="extra"><h3>QR platby — prompt</h3><p>Ukázkový Master Prompt.</p><a class="btn btn-dl" href="../download/qr-platby-rodice-prompt.md" download>Stáhnout</a></div>
-      <div class="extra"><h3>Master Prompt — vzor</h3><p>Výstup Fáze 3.</p><a class="btn btn-dl" href="../download/master-prompt-vzor.md" download>Stáhnout</a></div>
-    </div>
-    <div class="zip-row"><a class="btn btn-open" href="../download/odprdukprdu-materialy.zip">Stáhnout vše (.zip)</a></div>
   </div>
 
   <div class="modal" id="modal">
     <div class="modal-box">
-      <div class="modal-head"><h3 id="modal-title">Instrukce</h3><button type="button" class="modal-close" id="modal-close">×</button></div>
+      <div class="modal-head"><h3 id="modal-title">Materiál</h3><button type="button" class="modal-close" id="modal-close">×</button></div>
       <pre class="modal-body" id="modal-body"></pre>
       <div class="modal-foot">
-        <button type="button" class="btn btn-open" id="modal-copy">Kopírovat</button>
-        <a class="btn btn-dl" id="modal-dl" href="#" download>Stáhnout .md</a>
+        <button type="button" class="btn btn-pokyny" id="modal-copy">Kopírovat</button>
+        <a class="btn btn-navod" id="modal-dl" href="#" download>Stáhnout .md</a>
       </div>
     </div>
   </div>
@@ -119,11 +102,11 @@
     function closeModal(){ modal.classList.remove('open'); }
     document.getElementById('modal-close').onclick = closeModal;
     modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-    document.querySelectorAll('.btn-open[data-file]').forEach(btn => {
+    document.querySelectorAll('.modal-open').forEach(btn => {
       btn.addEventListener('click', async () => {
         const res = await fetch(btn.dataset.file);
         modalTitle.textContent = btn.dataset.title;
-        modalBody.textContent = await res.text();
+        modalBody.textContent = res.ok ? await res.text() : 'Soubor se nepodařilo načíst.';
         modalDl.href = btn.dataset.file;
         modalDl.download = btn.dataset.file.split('/').pop();
         modal.classList.add('open');

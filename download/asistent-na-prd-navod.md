@@ -1,4 +1,4 @@
-﻿# Asistent na prd — kterou AI používáš?
+# Asistent na prd — kterou AI používáš?
 
 **Asistent na prd** promění tvůj neurčitý nápad (*prd*) v **PRD + Master Prompt** pro stavitele (Claude artefakt, Lovable, Cursor).
 
