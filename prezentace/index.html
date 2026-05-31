@@ -111,18 +111,16 @@
     .disclaimer { font-size: var(--fs-body-sm); color: var(--muted); font-style: italic; margin-top: 8px; font-weight: 500; }
     .muted-aside { color: var(--muted); font-size: var(--fs-body-sm); font-weight: 500; }
 
-    .slide-anatomy .h2 { font-size: 72px; }
-    .slide-anatomy .slide-inner { gap: 14px; justify-content: flex-start; padding-top: calc(var(--safe) + 4px); }
-    .anatomy-lead { font-size: 26px; line-height: 1.32; color: var(--muted); font-weight: 500; }
-    .anatomy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; flex: 1; min-height: 0; align-content: start; }
-    .anatomy-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
+    .slide-anatomy .h2 { font-size: 74px; }
+    .slide-anatomy .slide-inner { gap: 18px; justify-content: flex-start; padding-top: calc(var(--safe) + 4px); }
+    .anatomy-lead { font-size: 34px; line-height: 1.3; color: var(--text); font-weight: 500; max-width: 1320px; }
+    .anatomy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; flex: 1; min-height: 0; align-content: start; }
+    .anatomy-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; }
     .anatomy-item.full { grid-column: 1 / -1; }
-    .anatomy-head { font-size: 19px; font-weight: 700; color: var(--accent-lime); margin-bottom: 5px; line-height: 1.2; }
-    .anatomy-quote { font-size: 17px; line-height: 1.28; color: var(--text); margin-bottom: 5px; font-weight: 500; }
-    .anatomy-flow { font-family: var(--ff-mono); font-size: 16px; line-height: 1.35; color: var(--text); margin-bottom: 5px; font-weight: 600; }
-    .anatomy-flow .arrow { color: var(--accent-lime); padding: 0 6px; }
-    .anatomy-effect { font-size: 16px; line-height: 1.28; color: var(--muted); font-weight: 500; }
-    .anatomy-effect strong { color: var(--accent-strong); font-weight: 700; }
+    .anatomy-head { font-size: 26px; font-weight: 700; color: var(--accent-lime); margin-bottom: 10px; line-height: 1.15; }
+    .anatomy-quote { font-size: 28px; line-height: 1.28; color: var(--text); font-weight: 500; }
+    .anatomy-flow { font-family: var(--ff-mono); font-size: 26px; line-height: 1.35; color: var(--text); font-weight: 700; }
+    .anatomy-flow .arrow { color: var(--accent-lime); padding: 0 8px; }
 
     .slide-inspire .h2 { font-size: 74px; }
     .slide-inspire .slide-inner { gap: 20px; }
@@ -330,32 +328,27 @@
   <div class="slide slide-anatomy" data-n="6">
     <div class="slide-inner">
       <h2 class="h2">Anatomie <span class="em">PRDu</span></h2>
-      <p class="anatomy-lead">Je to mapa vašeho záměru, která dává AI jasné souřadnice, aby nemusela hádat, co jste vlastně chtěli vytvořit.</p>
+      <p class="anatomy-lead">Překlad lidských přání do instrukcí, kterým AI rozumí.</p>
       <div class="anatomy-grid">
         <div class="anatomy-item">
           <div class="anatomy-head">1. Cíl — Co to řeší</div>
           <p class="anatomy-quote">„Chci aplikaci, která mi vygeneruje QR kód pro platbu školkovného, abych nemusel hledat číslo účtu v e-mailech.“</p>
-          <p class="anatomy-effect"><strong>Proč:</strong> Aby AI pochopila smysl existence té věci.</p>
         </div>
         <div class="anatomy-item">
           <div class="anatomy-head">2. Uživatel — Kdo to používá</div>
           <p class="anatomy-quote">„Rodič v ranním stresu, který má v jedné ruce brečící dítě a v druhé mobil.“</p>
-          <p class="anatomy-effect"><strong>Důsledek:</strong> AI pochopí, že ovládání musí být na jeden palec a obří tlačítka.</p>
         </div>
         <div class="anatomy-item">
           <div class="anatomy-head">3. Cesta uživatele (User Flow)</div>
           <p class="anatomy-flow">1. Otevřu <span class="arrow">→</span> 2. Napíšu částku <span class="arrow">→</span> 3. Vyjede QR kód <span class="arrow">→</span> 4. Hotovo.</p>
-          <p class="anatomy-effect"><strong>Důsledek:</strong> AI nenavrhne 5 zbytečných podstránek.</p>
         </div>
         <div class="anatomy-item">
           <div class="anatomy-head">4. Funkční minimum</div>
           <p class="anatomy-quote">Pole pro zadání částky, tlačítko „Generovat“, zobrazení obrázku s QR kódem.</p>
-          <p class="anatomy-effect"><strong>Pravidlo:</strong> Pokud to tam není napsané, pro AI to neexistuje.</p>
         </div>
         <div class="anatomy-item full">
           <div class="anatomy-head">5. Omezení a Data (The Guardrails)</div>
-          <p class="anatomy-effect"><strong>Pravidla:</strong> „Data se neukládají na server, vše se děje v prohlížeči. Barvy jako na webu školky.“</p>
-          <p class="anatomy-effect" style="margin-top:5px;"><strong>Důsledek:</strong> Bezpečnost a design jsou vyřešeny hned v prvním promptu.</p>
+          <p class="anatomy-quote">„Data se neukládají na server, vše se děje v prohlížeči. Barvy jako na webu školky.“</p>
         </div>
       </div>
     </div>
