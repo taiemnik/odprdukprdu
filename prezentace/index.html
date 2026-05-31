@@ -88,10 +88,15 @@
     .goodbye-slide { background: radial-gradient(ellipse 70% 50% at 80% 80%, rgba(217,250,167,.08) 0%, transparent 55%), var(--bg-dark); }
     .goodbye-inner { gap: 40px; align-items: flex-start; }
     .slop-quote {
-      font-size: 38px; line-height: 1.45; color: var(--muted); font-style: italic; font-weight: 400;
-      max-width: 1100px; padding: 32px 40px; border-left: 4px solid rgba(180,184,192,.35);
+      font-size: 32px; line-height: 1.5; color: var(--muted); font-style: italic; font-weight: 400;
+      max-width: 1150px; padding: 28px 36px; border-left: 4px solid rgba(180,184,192,.35);
     }
-    .goodbye-cta { font-family: var(--ff-mono); font-size: 32px; color: var(--accent-lime); font-weight: 700; }
+    .slop-punchline {
+      font-size: 52px; font-weight: 800; line-height: 1.15; letter-spacing: -.02em;
+      max-width: 1100px;
+    }
+    .slop-punchline .em { color: var(--accent-lime); font-style: normal; }
+    .goodbye-cta { font-family: var(--ff-mono); font-size: 28px; color: var(--accent-lime); font-weight: 700; }
 
     #nav { position: fixed; bottom: 0; right: 0; z-index: 100; display: flex; align-items: center; gap: 12px; padding: 12px 18px; background: rgba(10,10,10,.92); border-radius: 12px 0 0 0; font-family: var(--ff-mono); font-size: 14px; color: var(--muted); }
     #nav button { width: 40px; height: 40px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; color: var(--text); cursor: pointer; font-size: 18px; }
@@ -146,7 +151,7 @@
     <div class="slide-inner" style="justify-content:flex-end;padding-bottom:130px;">
       <div class="scrabble"><div class="tile">P</div><div class="tile">R</div><div class="tile">D</div></div>
       <h1 class="hero-h1">Od <span class="em">prdu</span> k PRDu</h1>
-      <p class="hero-sub">Jak proměnit hloupý nápad v aplikaci, kterou někdo skutečně použije.</p>
+      <p class="hero-sub">Jak proměnit nápad v aplikaci, kterou někdo skutečně použije.</p>
     </div>
     <div class="hero-meta">Josef Procházka · Vibecoding Festival · 2. 6. 2026</div>
     <div class="speaker-note">Přiznej GitHub. Před půl rokem jsi nevěděl, co je commit.</div>
@@ -271,16 +276,15 @@
     <div class="slide-inner" style="gap:28px;">
       <h2 class="h2">Příklady pro <span class="em">inspiraci</span></h2>
       <div class="inspire-grid">
-        <a class="pending" href="#" data-artifact="qr-platby">QR platba pro rodiče školky</a>
-        <a class="pending" href="#" data-artifact="skill-tree">Skill tree</a>
-        <a class="pending" href="#" data-artifact="dashboard">Dashboard</a>
-        <a class="pending" href="#" data-artifact="rsvp">RSVP</a>
-        <a class="pending" href="#" data-artifact="pdf-to-text">PDF to text</a>
-        <a class="pending" href="#" data-artifact="lanparty">Lanparty team mixer</a>
-        <a class="pending" href="#" data-artifact="psani-10">Psaní 10 game</a>
+        <a href="https://claude.ai/public/artifacts/951199b2-2cb4-4432-9626-167b5171d477" target="_blank" rel="noopener">QR platba pro rodiče školky</a>
+        <a href="https://claude.ai/public/artifacts/b6ce99aa-1611-493b-a81d-bebe302bc45d" target="_blank" rel="noopener">Skill tree</a>
+        <a href="https://claude.ai/public/artifacts/08b33f08-e135-4a54-a3fc-290538fa4e38" target="_blank" rel="noopener">RSVP</a>
+        <a href="https://claude.ai/public/artifacts/847fdedd-7f23-4c56-b287-f36464cbf4af" target="_blank" rel="noopener">PDF to text</a>
+        <a href="https://claude.ai/public/artifacts/49568082-7e72-411d-a8f5-bebf8add5628" target="_blank" rel="noopener">Lanparty team mixer</a>
+        <a href="https://claude.ai/public/artifacts/827b3c5f-dd13-4e9a-975a-3f8abd304c13" target="_blank" rel="noopener">Psaní 10 game</a>
       </div>
     </div>
-    <div class="speaker-note">Odkazy na sdílené artefakty doplníš v JS (ARTIFACT_LINKS) — pak zmizí „brzy".</div>
+    <div class="speaker-note">2 min. Klikni na odkaz — nebo inspirace na webu taiemnik.github.io/odprdukprdu/inspirace/</div>
   </div>
 
   <!-- 8 Konec -->
@@ -289,7 +293,8 @@
     <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner goodbye-inner">
       <div class="scrabble"><div class="tile">P</div><div class="tile">R</div><div class="tile">D</div></div>
-      <p class="slop-quote">V dnešní dynamicky se měnící digitální krajině — vaše nápady nejsou jen nápady. Jsou to semínka transformace, která má moc redefinovat to, jak společně reimaginujeme budoucnost, kde lidská kreativita a AI-driven inovace vstupují do synergického dialogu a unlockují váš plný potenciál.</p>
+      <p class="slop-quote">V dnešní dynamicky se měnící digitální krajině — vaše nápady nejsou jen nápady. Jsou to semínka transformace, která má moc redefinovat to, jak společně reimaginujeme budoucnost — tiše se díváme do obrazovky, tiše přemýšlíme, odpovídáme tiše a nahlas, proaktivně nasloucháme prostoru možností, holisticky propojujeme myšlenky a akce, kde lidská kreativita a AI-driven inovace vstupují do synergického dialogu, autenticky unlockují váš plný potenciál a společně budují smysluplnou hodnotu pro všechny stakeholdery.</p>
+      <p class="slop-punchline">Tvůrce netvoří <span class="em">prd</span> — tvoří z prd <span class="em">PRD</span>.</p>
       <p class="goodbye-cta">taiemnik.github.io/odprdukprdu</p>
     </div>
     <div class="speaker-note">Záměrný AI slop. Pak ukončit.</div>
@@ -352,26 +357,6 @@
   }
   window.addEventListener('resize', scale);
   scale();
-
-  // Odkazy na sdílené artefakty — doplnit URL, pak se aktivují automaticky
-  const ARTIFACT_LINKS = {
-    'qr-platby': '',
-    'skill-tree': '',
-    'dashboard': '',
-    'rsvp': '',
-    'pdf-to-text': '',
-    'lanparty': '',
-    'psani-10': ''
-  };
-  document.querySelectorAll('[data-artifact]').forEach(a => {
-    const url = ARTIFACT_LINKS[a.dataset.artifact];
-    if (url) {
-      a.href = url;
-      a.target = '_blank';
-      a.rel = 'noopener';
-      a.classList.remove('pending');
-    }
-  });
 
   const NAVODY = {
     gpt: {

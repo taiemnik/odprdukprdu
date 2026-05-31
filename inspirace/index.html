@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Příklady pro inspiraci | Od prdu k PRDu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a; --card: #141414; --text: #f5f5f5; --muted: #9ca3af;
+      --lime: #d9faa7; --border: #2a2a2a;
+      --sans: "Inter", sans-serif; --mono: "JetBrains Mono", monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.5; min-height: 100vh; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 32px 16px 64px; }
+    .back { font-size: .9rem; color: var(--muted); display: inline-block; margin-bottom: 12px; }
+    .back:hover { color: var(--lime); }
+    h1 { font-size: clamp(1.75rem, 5vw, 2.25rem); font-weight: 800; margin-bottom: 8px; }
+    h1 em { font-style: normal; color: var(--lime); }
+    .sub { color: var(--muted); margin-bottom: 28px; max-width: 560px; }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 540px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 900px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+    .item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 120px;
+      transition: border-color .2s, transform .15s;
+    }
+    .item:hover { border-color: rgba(217, 250, 167, .4); transform: translateY(-2px); }
+    .item h2 { font-size: 1.05rem; font-weight: 700; line-height: 1.3; }
+    .item p { font-size: .85rem; color: var(--muted); flex: 1; }
+    .item-action {
+      font-family: var(--mono);
+      font-size: .78rem;
+      color: var(--lime);
+    }
+    .badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 8px;
+      border-radius: 6px;
+      align-self: flex-start;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../">← Od prdu k PRDu</a>
+    <h1>Příklady pro <em>inspiraci</em></h1>
+    <p class="sub">Sdílené Claude artefakty — otevřete, hrajte si, zkopírujte strukturu do vlastního prd.</p>
+
+    <div class="grid">
+      <a class="item" href="https://claude.ai/public/artifacts/951199b2-2cb4-4432-9626-167b5171d477" target="_blank" rel="noopener">
+        <span class="badge">Claude artefakt</span>
+        <h2>QR platba pro rodiče školky</h2>
+        <p>Generátor plateb — konec chaosu s variabilními symboly.</p>
+        <span class="item-action">Otevřít →</span>
+      </a>
+      <a class="item" href="https://claude.ai/public/artifacts/b6ce99aa-1611-493b-a81d-bebe302bc45d" target="_blank" rel="noopener">
+        <span class="badge">Claude artefakt</span>
+        <h2>Skill tree</h2>
+        <p>Interaktivní RPG skill tree — 9 tříd.</p>
+        <span class="item-action">Otevřít →</span>
+      </a>
+      <a class="item" href="https://claude.ai/public/artifacts/08b33f08-e135-4a54-a3fc-290538fa4e38" target="_blank" rel="noopener">
+        <span class="badge">Claude artefakt</span>
+        <h2>RSVP</h2>
+        <p>Speed reader — rychlé čtení po slovech.</p>
+        <span class="item-action">Otevřít →</span>
+      </a>
+      <a class="item" href="https://claude.ai/public/artifacts/847fdedd-7f23-4c56-b287-f36464cbf4af" target="_blank" rel="noopener">
+        <span class="badge">Claude artefakt</span>
+        <h2>PDF to text</h2>
+        <p>Extrakce textu z PDF — bez hlaviček a patiček.</p>
+        <span class="item-action">Otevřít →</span>
+      </a>
+      <a class="item" href="https://claude.ai/public/artifacts/49568082-7e72-411d-a8f5-bebf8add5628" target="_blank" rel="noopener">
+        <span class="badge">Claude artefakt</span>
+        <h2>Lanparty team mixer</h2>
+        <p>Snake draft — vyvážené týmy na LAN.</p>
+        <span class="item-action">Otevřít →</span>
+      </a>
+      <a class="item" href="https://claude.ai/public/artifacts/827b3c5f-dd13-4e9a-975a-3f8abd304c13" target="_blank" rel="noopener">
+        <span class="badge">Claude artefakt</span>
+        <h2>Psaní 10 game</h2>
+        <p>Dračí quest — učte se psát všemi deseti.</p>
+        <span class="item-action">Otevřít →</span>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
