@@ -12,7 +12,7 @@
       --bg-dark: #0a0a0a; --bg-card: #141414; --text: #f5f5f5; --muted: #b4b8c0;
       --accent-lime: #d9faa7; --accent-strong: #e8ffb8; --border: #2a2a2a; --danger: #f87171;
       --safe: 80px; --ff-sans: 'Inter', system-ui, sans-serif; --ff-mono: 'JetBrains Mono', monospace;
-      --qr-size: 307px;
+      --dock-width: 190px;
       /* Vyvážená škála: čitelnost z sálu, bez přeplnění slidu */
       --fs-body: 35px;
       --fs-body-sm: 30px;
@@ -27,10 +27,25 @@
     .slide { position: absolute; inset: 0; display: none; background: var(--bg-dark); overflow: hidden; }
     .slide.active { display: block; }
     .slide-bar { position: absolute; top: 0; left: 0; right: 0; height: 8px; background: var(--accent-lime); }
-    .slide-inner { position: absolute; inset: 0; padding: calc(var(--safe) + 12px) calc(var(--safe) + var(--qr-size) + 36px) 64px var(--safe); display: flex; flex-direction: column; justify-content: center; gap: 32px; }
+    .slide-inner { position: absolute; inset: 0; padding: calc(var(--safe) + 12px) var(--safe) 64px var(--safe); display: flex; flex-direction: column; justify-content: center; gap: 32px; }
 
-    .slide-qr { position: absolute; top: 24px; right: 24px; z-index: 20; width: var(--qr-size); height: var(--qr-size); background: #fff; border-radius: 12px; padding: 8px; box-shadow: 0 4px 24px rgba(0,0,0,.5); }
-    .slide-qr img { width: 100%; height: 100%; display: block; image-rendering: pixelated; image-rendering: crisp-edges; }
+    .bottom-dock {
+      position: fixed; right: 16px; bottom: 16px; z-index: 200;
+      width: var(--dock-width); display: flex; flex-direction: column; align-items: stretch; gap: 8px;
+    }
+    .dock-qr {
+      width: 100%; aspect-ratio: 1; background: #fff; border-radius: 10px; padding: 6px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.45); display: block;
+    }
+    .dock-qr.hidden { display: none; }
+    .dock-qr img { width: 100%; height: 100%; display: block; image-rendering: pixelated; image-rendering: crisp-edges; }
+    #dock-ai-mount { width: 100%; position: relative; }
+    body.page-prezentace .ai-palette-container { position: relative; right: auto; bottom: auto; width: 100%; }
+    body.page-prezentace .ai-palette-btn {
+      width: 100%; border-radius: 10px; padding: 10px 8px; font-size: 12px; text-align: center;
+      box-shadow: none; white-space: nowrap;
+    }
+    body.page-prezentace .ai-palette-menu { width: calc(var(--dock-width) + 48px); right: 0; }
 
     .h2 { font-size: 80px; font-weight: 800; line-height: 1.05; letter-spacing: -.025em; }
     .h2 .em { color: var(--accent-strong); }
@@ -123,8 +138,13 @@
     .motiv-quote p + p { margin-top: 12px; }
     .motiv-quote .em { color: var(--accent-lime); }
 
-    #nav { position: fixed; bottom: 0; right: 0; z-index: 100; display: flex; align-items: center; gap: 12px; padding: 12px 18px; background: rgba(10,10,10,.92); border-radius: 12px 0 0 0; font-family: var(--ff-mono); font-size: 14px; color: var(--muted); }
-    #nav button { width: 40px; height: 40px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; color: var(--text); cursor: pointer; font-size: 18px; }
+    #nav {
+      position: static; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 6px;
+      padding: 8px 8px; background: rgba(10,10,10,.92); border: 1px solid var(--border); border-radius: 10px;
+      font-family: var(--ff-mono); font-size: 12px; color: var(--muted);
+    }
+    #nav button { width: 34px; height: 34px; flex-shrink: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; color: var(--text); cursor: pointer; font-size: 16px; }
+    #counter { flex: 1; text-align: center; font-size: 11px; letter-spacing: .02em; }
     #progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--accent-lime); z-index: 200; transition: width .25s; }
     .speaker-note { display: none; position: absolute; bottom: 0; left: 0; right: 0; padding: 14px var(--safe); background: rgba(0,0,0,.94); font-size: 16px; color: var(--muted); z-index: 50; }
     body.show-notes .speaker-note { display: block; }
@@ -175,7 +195,7 @@
       #stage { position: static; display: block; }
       #scaler { width: 100% !important; height: auto !important; transform: none !important; }
       .slide { position: relative !important; display: block !important; width: 1600px !important; height: 900px !important; page-break-after: always; opacity: 1 !important; print-color-adjust: exact; }
-      #nav, #progress, .speaker-note, .modal { display: none !important; }
+      #bottom-dock, #progress, .speaker-note, .modal { display: none !important; }
     }
   </style>
 </head>
@@ -185,7 +205,6 @@
 
   <!-- 1 Hero -->
   <div class="slide hero-slide active" data-n="1">
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener" title="Materiály"><img src="https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner" style="justify-content:flex-end;padding-bottom:130px;">
       <div class="scrabble"><div class="tile">P</div><div class="tile">R</div><div class="tile">D</div></div>
       <h1 class="hero-h1">Od <span class="em">prdu</span> k PRDu</h1>
@@ -198,7 +217,6 @@
   <!-- 2 PRD -->
   <div class="slide" data-n="2">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner" style="gap:24px;">
       <h2 class="h2">PRD je <span class="em">mapa</span> vašeho nápadu</h2>
       <div class="compare-grid">
@@ -222,7 +240,6 @@
   <!-- 3 Vibe -->
   <div class="slide bq-slide" data-n="3">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner bq-inner">
       <h2 class="bq-title">Řešte <span class="em">vibe</span>,<br>ne aplikaci</h2>
       <ul class="blist bq-list">
@@ -238,7 +255,6 @@
   <!-- 4 Začněte s málem -->
   <div class="slide" data-n="4">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner">
       <h2 class="h2">Začněte s <span class="em">málem</span></h2>
       <div class="split">
@@ -265,7 +281,6 @@
   <!-- 5 Bezpečnost -->
   <div class="slide" data-n="5">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner">
       <h2 class="h2">Bezpečnost:<br>ptejte se <span class="em">JESTLI</span>, ne JAK</h2>
       <div class="split">
@@ -292,7 +307,6 @@
   <!-- 6 Asistent na prd -->
   <div class="slide" data-n="6">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/materialy/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2Fmaterialy%2F" alt="QR"></a>
     <div class="slide-inner">
       <h2 class="h2">Asistent na <span class="em">PRD</span></h2>
       <div class="split">
@@ -316,7 +330,6 @@
   <!-- 7 Příklady -->
   <div class="slide slide-inspire" data-n="7">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner" style="gap:20px;">
       <h2 class="h2">Příklady pro <span class="em">inspiraci</span></h2>
       <div class="inspire-grid">
@@ -387,11 +400,17 @@
   </div>
 </div>
 
-<nav id="nav">
-  <button type="button" id="prev" aria-label="Předchozí">←</button>
-  <span id="counter">1 / 8</span>
-  <button type="button" id="next" aria-label="Další">→</button>
-</nav>
+<aside id="bottom-dock" class="bottom-dock" aria-label="QR, AI a navigace">
+  <a id="dock-qr" class="dock-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener" title="Materiály">
+    <img id="dock-qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&amp;data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR kód materiálů">
+  </a>
+  <div id="dock-ai-mount"></div>
+  <nav id="nav">
+    <button type="button" id="prev" aria-label="Předchozí">←</button>
+    <span id="counter">1 / 8</span>
+    <button type="button" id="next" aria-label="Další">→</button>
+  </nav>
+</aside>
 
 <script>
 (function(){
@@ -400,14 +419,35 @@
   let i = 0;
   const prog = document.getElementById('progress');
   const counter = document.getElementById('counter');
+  const dockQr = document.getElementById('dock-qr');
+  const dockQrImg = document.getElementById('dock-qr-img');
+  const QR_DEFAULT = 'https://taiemnik.github.io/odprdukprdu/';
+  const QR_MATERIALY = 'https://taiemnik.github.io/odprdukprdu/materialy/';
+  function qrApi(url) {
+    return 'https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=' + encodeURIComponent(url);
+  }
+  function updateDockQr(slideIndex) {
+    if (!dockQr || !dockQrImg) return;
+    const slideNum = slides[slideIndex]?.dataset?.n ? parseInt(slides[slideIndex].dataset.n, 10) : slideIndex + 1;
+    if (slideNum === 8) {
+      dockQr.classList.add('hidden');
+      return;
+    }
+    dockQr.classList.remove('hidden');
+    const url = slideNum === 6 ? QR_MATERIALY : QR_DEFAULT;
+    dockQr.href = url;
+    dockQrImg.src = qrApi(url);
+  }
   function show(n){
     i = (n + total) % total;
     slides.forEach((s,j) => s.classList.toggle('active', j === i));
     counter.textContent = (i+1) + ' / ' + total;
     prog.style.width = ((i+1)/total*100) + '%';
+    updateDockQr(i);
   }
   document.getElementById('prev').onclick = () => show(i-1);
   document.getElementById('next').onclick = () => show(i+1);
+  updateDockQr(0);
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); show(i+1); }
     if (e.key === 'ArrowLeft') show(i-1);

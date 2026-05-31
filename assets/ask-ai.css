@@ -7,9 +7,12 @@
   font-family: "Inter", system-ui, sans-serif;
 }
 
-/* Prezentace má dole pravý nav — FAB posunout výš */
+/* Prezentace: FAB je v #bottom-dock, ne fixed samostatně */
 body.page-prezentace .ai-palette-container {
-  bottom: 58px;
+  position: relative;
+  right: auto;
+  bottom: auto;
+  width: 100%;
 }
 
 .ai-palette-btn {

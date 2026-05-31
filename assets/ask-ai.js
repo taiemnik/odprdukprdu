@@ -96,7 +96,8 @@
       '<button type="button" class="ai-menu-item" id="ai-copy-prompt">📋 Kopírovat instrukci</button>' +
       "</div>";
 
-    document.body.appendChild(root);
+    var mount = document.getElementById("dock-ai-mount");
+    (mount || document.body).appendChild(root);
 
     var btn = document.getElementById("ai-palette-btn");
     var copyBtn = document.getElementById("ai-copy-prompt");
