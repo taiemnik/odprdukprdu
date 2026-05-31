@@ -12,7 +12,7 @@
       --bg-dark: #0a0a0a; --bg-card: #141414; --text: #f5f5f5; --muted: #b4b8c0;
       --accent-lime: #d9faa7; --accent-strong: #e8ffb8; --border: #2a2a2a; --danger: #f87171;
       --safe: 80px; --ff-sans: 'Inter', system-ui, sans-serif; --ff-mono: 'JetBrains Mono', monospace;
-      --qr-size: 76px;
+      --qr-size: 148px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { width: 100%; height: 100%; overflow: hidden; background: #050505; font-family: var(--ff-sans); color: var(--text); }
@@ -21,16 +21,14 @@
     .slide { position: absolute; inset: 0; display: none; background: var(--bg-dark); overflow: hidden; }
     .slide.active { display: block; }
     .slide-bar { position: absolute; top: 0; left: 0; right: 0; height: 8px; background: var(--accent-lime); }
-    .slide-inner { position: absolute; inset: 0; padding: calc(var(--safe) + 8px) calc(var(--safe) + var(--qr-size) + 24px) 64px var(--safe); display: flex; flex-direction: column; justify-content: center; gap: 32px; }
+    .slide-inner { position: absolute; inset: 0; padding: calc(var(--safe) + 12px) calc(var(--safe) + var(--qr-size) + 36px) 64px var(--safe); display: flex; flex-direction: column; justify-content: center; gap: 32px; }
 
-    .slide-qr { position: absolute; top: 28px; right: 28px; z-index: 20; width: var(--qr-size); height: var(--qr-size); background: #fff; border-radius: 10px; padding: 6px; box-shadow: 0 4px 20px rgba(0,0,0,.45); }
-    .slide-qr img { width: 100%; height: 100%; display: block; }
+    .slide-qr { position: absolute; top: 24px; right: 24px; z-index: 20; width: var(--qr-size); height: var(--qr-size); background: #fff; border-radius: 12px; padding: 8px; box-shadow: 0 4px 24px rgba(0,0,0,.5); }
+    .slide-qr img { width: 100%; height: 100%; display: block; image-rendering: pixelated; image-rendering: crisp-edges; }
 
     .h2 { font-size: 80px; font-weight: 800; line-height: 1.05; letter-spacing: -.025em; }
     .h2 .em { color: var(--accent-strong); }
     .lead { font-size: 36px; line-height: 1.4; color: var(--text); font-weight: 500; }
-    .kicker { font-size: 26px; color: var(--muted); font-style: italic; line-height: 1.4; }
-    .rd-quote { font-size: 24px; color: var(--accent-lime); font-style: italic; opacity: .92; padding-left: 20px; border-left: 4px solid rgba(217,250,167,.35); max-width: 900px; }
 
     .hero-slide { background: radial-gradient(ellipse 80% 60% at 20% 10%, rgba(217,250,167,.10) 0%, transparent 55%), var(--bg-dark); }
     .scrabble { display: flex; gap: 22px; margin-bottom: 24px; }
@@ -56,17 +54,18 @@
     .blist { list-style: none; display: flex; flex-direction: column; gap: 20px; }
     .blist li { font-size: 32px; line-height: 1.35; padding-left: 40px; position: relative; color: var(--text); font-weight: 500; }
     .blist li::before { content: ''; position: absolute; left: 0; top: .55em; width: 14px; height: 14px; border-radius: 4px; background: var(--accent-lime); }
+    .blist.compact li { font-size: 26px; padding-left: 32px; }
 
     .flow-label { font-family: var(--ff-mono); font-size: 16px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-lime); }
     .flow-line { font-family: var(--ff-mono); font-size: 32px; color: var(--text); font-weight: 700; letter-spacing: .02em; }
     .flow-line .arrow { color: var(--accent-lime); padding: 0 10px; }
-    .flow-note { font-size: 22px; color: var(--muted); line-height: 1.4; }
 
     .bq-slide { background: linear-gradient(145deg, #0a0a0a 0%, #131313 50%, #0d0d0d 100%); }
-    .bq-inner { text-align: center; gap: 28px; }
+    .bq-inner { text-align: center; gap: 36px; }
     .bq-title { font-size: 88px; font-weight: 800; line-height: 1.05; }
     .bq-title .em { color: var(--accent-lime); }
-    .bq-list { max-width: 1100px; margin: 0 auto; text-align: left; }
+    .bq-list { max-width: 900px; margin: 0 auto; text-align: left; gap: 28px; }
+    .bq-list li { font-size: 36px; }
 
     .plat-btns { display: flex; flex-direction: column; gap: 14px; width: 100%; }
     .plat-btn { font-family: inherit; font-size: 22px; font-weight: 700; padding: 18px 22px; border-radius: 14px; border: 1px solid rgba(217,250,167,.35); background: rgba(217,250,167,.08); color: var(--accent-lime); cursor: pointer; text-align: left; transition: background .15s, border-color .15s; }
@@ -76,20 +75,22 @@
     .plat-btn.gem { border-color: rgba(66,133,244,.45); color: #93c5fd; background: rgba(66,133,244,.08); }
     .disclaimer { font-size: 22px; color: var(--muted); font-style: italic; margin-top: 8px; }
 
-    .demo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; flex: 1; align-content: center; }
-    .demo-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; }
-    .shot { height: 200px; background: #1a1a1a; border-bottom: 1px dashed var(--border); display: flex; align-items: center; justify-content: center; color: var(--muted); font-family: var(--ff-mono); font-size: 14px; background-size: cover; background-position: center; }
-    .shot.has-img { border-bottom: none; }
-    .demo-body { padding: 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
-    .demo-body h3 { font-size: 28px; color: var(--accent-lime); }
-    .demo-body p { font-size: 22px; color: var(--muted); line-height: 1.35; flex: 1; }
-    .demo-link { font-family: var(--ff-mono); font-size: 18px; color: var(--accent-lime); text-decoration: none; font-weight: 600; }
-    .demo-link:hover { text-decoration: underline; }
+    .inspire-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px 40px; flex: 1; align-content: center; max-width: 1200px; }
+    .inspire-grid a {
+      font-size: 28px; font-weight: 600; color: var(--accent-lime); text-decoration: none;
+      padding: 16px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px;
+    }
+    .inspire-grid a::before { content: '→'; font-family: var(--ff-mono); opacity: .7; }
+    .inspire-grid a:hover { text-decoration: underline; }
+    .inspire-grid a.pending { color: var(--muted); pointer-events: none; }
+    .inspire-grid a.pending::after { content: ' (brzy)'; font-size: 18px; font-weight: 400; font-family: var(--ff-mono); }
 
     .goodbye-slide { background: radial-gradient(ellipse 70% 50% at 80% 80%, rgba(217,250,167,.08) 0%, transparent 55%), var(--bg-dark); }
-    .goodbye-inner { gap: 28px; }
-    .goodbye-msg { font-size: 64px; font-weight: 800; line-height: 1.15; max-width: 1200px; }
-    .goodbye-msg .em { color: var(--accent-lime); }
+    .goodbye-inner { gap: 40px; align-items: flex-start; }
+    .slop-quote {
+      font-size: 38px; line-height: 1.45; color: var(--muted); font-style: italic; font-weight: 400;
+      max-width: 1100px; padding: 32px 40px; border-left: 4px solid rgba(180,184,192,.35);
+    }
     .goodbye-cta { font-family: var(--ff-mono); font-size: 32px; color: var(--accent-lime); font-weight: 700; }
 
     #nav { position: fixed; bottom: 0; right: 0; z-index: 100; display: flex; align-items: center; gap: 12px; padding: 12px 18px; background: rgba(10,10,10,.92); border-radius: 12px 0 0 0; font-family: var(--ff-mono); font-size: 14px; color: var(--muted); }
@@ -100,15 +101,29 @@
 
     .modal { position: fixed; inset: 0; z-index: 500; background: rgba(0,0,0,.82); display: none; align-items: center; justify-content: center; padding: 24px; }
     .modal.open { display: flex; }
-    .modal-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; width: min(900px, 96vw); max-height: 85vh; display: flex; flex-direction: column; overflow: hidden; }
-    .modal-head { padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-    .modal-head h3 { font-size: 1.25rem; }
-    .modal-close { background: none; border: none; color: var(--muted); font-size: 28px; cursor: pointer; line-height: 1; }
-    .modal-body { padding: 20px 24px; overflow: auto; flex: 1; font-family: var(--ff-mono); font-size: 12px; line-height: 1.5; color: var(--muted); white-space: pre-wrap; }
-    .modal-foot { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; gap: 12px; flex-wrap: wrap; }
+    .modal-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; width: min(920px, 96vw); max-height: 85vh; display: flex; flex-direction: column; overflow: hidden; }
+    .modal-head { padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .modal-head h3 { font-size: 1.2rem; }
+    .modal-close { background: none; border: none; color: var(--muted); font-size: 28px; cursor: pointer; line-height: 1; margin-left: auto; }
+    .modal-tabs { display: flex; gap: 8px; }
+    .modal-tab { font-family: inherit; font-size: .85rem; font-weight: 600; padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; }
+    .modal-tab.active { background: rgba(217,250,167,.12); border-color: rgba(217,250,167,.4); color: var(--accent-lime); }
+    .modal-panel { display: none; padding: 20px 24px; overflow: auto; flex: 1; }
+    .modal-panel.active { display: block; }
+    .modal-panel.navod-panel { font-family: var(--ff-sans); font-size: 17px; line-height: 1.55; color: var(--text); }
+    .modal-panel.navod-panel h4 { font-size: 1rem; color: var(--accent-lime); margin: 20px 0 8px; }
+    .modal-panel.navod-panel h4:first-child { margin-top: 0; }
+    .modal-panel.navod-panel ol, .modal-panel.navod-panel ul { padding-left: 1.4rem; margin: 8px 0; color: var(--muted); }
+    .modal-panel.navod-panel li { margin-bottom: 6px; }
+    .modal-panel.navod-panel table { width: 100%; border-collapse: collapse; font-size: .95rem; margin: 12px 0; }
+    .modal-panel.navod-panel th, .modal-panel.navod-panel td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
+    .modal-panel.pokyny-panel pre { font-family: var(--ff-mono); font-size: 11px; line-height: 1.5; color: var(--muted); white-space: pre-wrap; word-break: break-word; }
+    .modal-foot { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
     .modal-foot button, .modal-foot a { font-family: inherit; font-size: .9rem; font-weight: 600; padding: 10px 18px; border-radius: 8px; cursor: pointer; text-decoration: none; border: none; }
     .modal-copy { background: var(--accent-lime); color: #0a0a0a; }
     .modal-dl { background: transparent; color: var(--accent-lime); border: 1px solid rgba(217,250,167,.35); display: inline-flex; align-items: center; }
+    .modal-goto-pokyny { background: transparent; color: var(--accent-lime); border: 1px solid rgba(217,250,167,.35); margin-left: auto; }
+    .modal-foot.hidden { display: none; }
 
     @media screen { .slide { opacity: 0; transition: opacity .25s; } .slide.active { opacity: 1; } }
     @media print {
@@ -127,12 +142,11 @@
 
   <!-- 1 Hero -->
   <div class="slide hero-slide active" data-n="1">
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener" title="Materiály"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
+    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener" title="Materiály"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner" style="justify-content:flex-end;padding-bottom:130px;">
       <div class="scrabble"><div class="tile">P</div><div class="tile">R</div><div class="tile">D</div></div>
       <h1 class="hero-h1">Od <span class="em">prdu</span> k PRDu</h1>
       <p class="hero-sub">Jak proměnit hloupý nápad v aplikaci, kterou někdo skutečně použije.</p>
-      <p class="rd-quote">„Směl jsem se domnívat, že to bude jednoduché, Pane."</p>
     </div>
     <div class="hero-meta">Josef Procházka · Vibecoding Festival · 2. 6. 2026</div>
     <div class="speaker-note">Přiznej GitHub. Před půl rokem jsi nevěděl, co je commit.</div>
@@ -141,7 +155,7 @@
   <!-- 2 PRD -->
   <div class="slide" data-n="2">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
+    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner" style="gap:24px;">
       <h2 class="h2">PRD je <span class="em">mapa</span> vašeho nápadu</h2>
       <div class="compare-grid">
@@ -158,7 +172,6 @@
           <div class="compare-cell good"><div class="label">Správně</div><p class="quote">„Každé pondělí 2 h v Excelu. Chci vidět trend bez posílání dat do cloudu."</p></div>
         </div>
       </div>
-      <p class="rd-quote">„To je stejně užitečné jako smirkovač na ledovec."</p>
     </div>
     <div class="speaker-note">Výzva: definujte PRD třemi slovy bez „dokument".</div>
   </div>
@@ -166,25 +179,23 @@
   <!-- 3 Vibe -->
   <div class="slide bq-slide" data-n="3">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
+    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner bq-inner">
       <h2 class="bq-title">Řešte <span class="em">vibe</span>,<br>ne aplikaci</h2>
       <ul class="blist bq-list">
-        <li><strong>Všechno je prompt</strong> — nadiktujte, nechte si poradit (FAIL / AIMEE)</li>
-        <li><strong>Vibe working</strong> — vy držíte záměr a doménu, AI exekuuje</li>
-        <li><strong>Hotové &gt; dokonalé</strong> — první artefakt dnes, ladění zítra</li>
-        <li><strong>Context engineering</strong> — kontext je důležitější než složitý prompt</li>
-        <li><strong>90/10 self-service</strong> — nejdřív zkus sám, pak deleguj</li>
+        <li><strong>Všechno je prompt</strong> — obrázek, odkaz</li>
+        <li><strong>Iterujte</strong> — postupně upravujte</li>
+        <li><strong>Pokus–omyl</strong> — prostě zkoušet</li>
+        <li><strong>90/10</strong> — AI / já</li>
       </ul>
-      <p class="rd-quote" style="margin:0 auto;">„Všechno je prompt, Pane. I tento slide."</p>
     </div>
-    <div class="speaker-note">Bez konkrétních příkladů app — principy z kurzů. Debata: co byste řešili vy?</div>
+    <div class="speaker-note">Principy z kurzů FAIL / AIMEE. Debata: co byste řešili vy?</div>
   </div>
 
   <!-- 4 Začněte s málem -->
   <div class="slide" data-n="4">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
+    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner">
       <h2 class="h2">Začněte s <span class="em">málem</span></h2>
       <div class="split">
@@ -196,7 +207,6 @@
         <div class="split-side">
           <p class="flow-label">Dev flow</p>
           <p class="flow-line">Nápad <span class="arrow">→</span> AI magie <span class="arrow">→</span> Řešení</p>
-          <p class="rd-quote" style="border:none;padding:0;font-size:20px;">„GitHub je černá skříňka. Cursor ví, co s ní. Vy držíte rukojeť."</p>
         </div>
       </div>
     </div>
@@ -206,7 +216,7 @@
   <!-- 5 Bezpečnost -->
   <div class="slide" data-n="5">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
+    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner">
       <h2 class="h2">Bezpečnost:<br>ptejte se <span class="em">JESTLI</span>, ne JAK</h2>
       <div class="split">
@@ -218,15 +228,14 @@
         </ul>
         <div class="split-side">
           <p class="flow-label">Bezpečné alternativy</p>
-          <ul class="blist" style="gap:14px;">
-            <li style="font-size:26px;padding-left:32px;">Celá aplikace běží local (HTML v prohlížeči)</li>
-            <li style="font-size:26px;padding-left:32px;">Privátní server / intranet MÚ</li>
-            <li style="font-size:26px;padding-left:32px;">Firemní tenant (M365, Google Workspace…)</li>
-            <li style="font-size:26px;padding-left:32px;">Anonymizovaná / vzorová data do AI</li>
+          <ul class="blist compact" style="gap:14px;">
+            <li>Celá aplikace běží local (HTML v prohlížeči)</li>
+            <li>Privátní server</li>
+            <li>Firemní prostředí (např. Google Workspace)</li>
+            <li>Anonymizovaná / vzorová data do AI</li>
           </ul>
         </div>
       </div>
-      <p class="rd-quote">„Vlk se nažral a koza zůstala celá."</p>
     </div>
     <div class="speaker-note">Do AI struktura Excelu, ne produkční data.</div>
   </div>
@@ -234,7 +243,7 @@
   <!-- 6 Asistent na prd -->
   <div class="slide" data-n="6">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/materialy/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2Fmaterialy%2F" alt="QR"></a>
+    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/materialy/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2Fmaterialy%2F" alt="QR"></a>
     <div class="slide-inner">
       <h2 class="h2">Asistent na <span class="em">prd</span></h2>
       <div class="split">
@@ -245,62 +254,45 @@
         <div class="split-side">
           <p class="flow-label">Vyberte platformu</p>
           <div class="plat-btns">
-            <button type="button" class="plat-btn gpt" data-file="../download/asistent-na-prd-chatgpt.md" data-title="ChatGPT — Custom GPT">ChatGPT · Custom GPT</button>
-            <button type="button" class="plat-btn claude" data-file="../download/asistent-na-prd-claude.md" data-title="Claude · Project">Claude · Project</button>
-            <button type="button" class="plat-btn gem" data-file="../download/asistent-na-prd-gemini.md" data-title="Gemini · Gem">Gemini · Gem</button>
+            <button type="button" class="plat-btn gpt" data-plat="gpt">ChatGPT · Custom GPT</button>
+            <button type="button" class="plat-btn claude" data-plat="claude">Claude · Project</button>
+            <button type="button" class="plat-btn gem" data-plat="gem">Gemini · Gem</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="speaker-note">Live demo: „Mám nápad na aplikaci…" Tlačítka otevřou instrukce ke kopírování.</div>
+    <div class="speaker-note">Live demo: tlačítka → Návod + Pokyny. Test: „Mám nápad na aplikaci."</div>
   </div>
 
-  <!-- 7 Ukázky -->
+  <!-- 7 Příklady -->
   <div class="slide" data-n="7">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/materialy/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2Fmaterialy%2F" alt="QR"></a>
-    <div class="slide-inner" style="gap:24px;">
-      <h2 class="h2">Vyzkoušejte <span class="em">sami</span></h2>
-      <div class="demo-grid">
-        <article class="demo-card">
-          <div class="shot" id="shot-qr">Screenshot · QR platby</div>
-          <div class="demo-body">
-            <h3>QR platby rodiče</h3>
-            <p>Konec chaosu s variabilními symboly.</p>
-            <a class="demo-link" href="../download/qr-platby-rodice-prompt.md" target="_blank">Prompt + vyzkoušet →</a>
-          </div>
-        </article>
-        <article class="demo-card">
-          <div class="shot" id="shot-checklist">Screenshot · checklist</div>
-          <div class="demo-body">
-            <h3>Dev-flow checklist</h3>
-            <p>Od nápadu k prvnímu shipu — zaškrtávejte.</p>
-            <a class="demo-link" href="../download/dev-flow-checklist.md" target="_blank">Stáhnout checklist →</a>
-          </div>
-        </article>
-        <article class="demo-card">
-          <div class="shot" id="shot-excel">Screenshot · Excel dashboard</div>
-          <div class="demo-body">
-            <h3>Dashboard z Excelu</h3>
-            <p>Popiš strukturu. Data vložte u sebe.</p>
-            <a class="demo-link" href="https://taiemnik.github.io/odprdukprdu/materialy/#dalsi">Vložte Excel →</a>
-          </div>
-        </article>
+    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
+    <div class="slide-inner" style="gap:28px;">
+      <h2 class="h2">Příklady pro <span class="em">inspiraci</span></h2>
+      <div class="inspire-grid">
+        <a class="pending" href="#" data-artifact="qr-platby">QR platba pro rodiče školky</a>
+        <a class="pending" href="#" data-artifact="skill-tree">Skill tree</a>
+        <a class="pending" href="#" data-artifact="dashboard">Dashboard</a>
+        <a class="pending" href="#" data-artifact="rsvp">RSVP</a>
+        <a class="pending" href="#" data-artifact="pdf-to-text">PDF to text</a>
+        <a class="pending" href="#" data-artifact="lanparty">Lanparty team mixer</a>
+        <a class="pending" href="#" data-artifact="psani-10">Psaní 10 game</a>
       </div>
     </div>
-    <div class="speaker-note">2 min. Screenshoty doplníš do assets/screenshots/ — shot-qr, shot-checklist, shot-excel.</div>
+    <div class="speaker-note">Odkazy na sdílené artefakty doplníš v JS (ARTIFACT_LINKS) — pak zmizí „brzy".</div>
   </div>
 
   <!-- 8 Konec -->
   <div class="slide goodbye-slide" data-n="8">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
+    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner goodbye-inner">
-      <p class="rd-quote" style="max-width:100%;margin-bottom:8px;">„Takže teď odcházíte unavení, ne s PRD. Klasika."</p>
-      <p class="goodbye-msg">Dobré zadání = <span class="em">méně oprav</span>.<br>Teď běžte a udělejte první gól.</p>
+      <div class="scrabble"><div class="tile">P</div><div class="tile">R</div><div class="tile">D</div></div>
+      <p class="slop-quote">V dnešní dynamicky se měnící digitální krajině — vaše nápady nejsou jen nápady. Jsou to semínka transformace, která má moc redefinovat to, jak společně reimaginujeme budoucnost, kde lidská kreativita a AI-driven inovace vstupují do synergického dialogu a unlockují váš plný potenciál.</p>
       <p class="goodbye-cta">taiemnik.github.io/odprdukprdu</p>
     </div>
-    <div class="speaker-note">Závěrečný kopanec. QR po celou dobu na každém slidu.</div>
+    <div class="speaker-note">Záměrný AI slop. Pak ukončit.</div>
   </div>
 
 </div></div>
@@ -308,11 +300,19 @@
 <div class="modal" id="modal" aria-hidden="true">
   <div class="modal-box">
     <div class="modal-head">
-      <h3 id="modal-title">Instrukce</h3>
+      <h3 id="modal-title">Asistent</h3>
+      <div class="modal-tabs">
+        <button type="button" class="modal-tab active" data-tab="navod">Návod</button>
+        <button type="button" class="modal-tab" data-tab="pokyny">Pokyny</button>
+      </div>
       <button type="button" class="modal-close" id="modal-close" aria-label="Zavřít">×</button>
     </div>
-    <pre class="modal-body" id="modal-body"></pre>
-    <div class="modal-foot">
+    <div class="modal-panel navod-panel active" id="panel-navod"></div>
+    <div class="modal-panel pokyny-panel" id="panel-pokyny"><pre id="pokyny-text"></pre></div>
+    <div class="modal-foot" id="modal-foot-navod">
+      <button type="button" class="modal-goto-pokyny" id="goto-pokyny">Pokyny → kopírovat / stáhnout</button>
+    </div>
+    <div class="modal-foot hidden" id="modal-foot-pokyny">
       <button type="button" class="modal-copy" id="modal-copy">Kopírovat</button>
       <a class="modal-dl" id="modal-dl" href="#" download>Stáhnout .md</a>
     </div>
@@ -327,7 +327,6 @@
 
 <script>
 (function(){
-  const QR_BASE = 'https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=';
   const slides = [...document.querySelectorAll('.slide')];
   const total = slides.length;
   let i = 0;
@@ -354,46 +353,153 @@
   window.addEventListener('resize', scale);
   scale();
 
-  // Screenshoty — po nahrání do ../assets/screenshots/*.png se zobrazí automaticky
-  const shots = {
-    'shot-qr': '../assets/screenshots/qr-platby.png',
-    'shot-checklist': '../assets/screenshots/checklist.png',
-    'shot-excel': '../assets/screenshots/excel-dashboard.png'
+  // Odkazy na sdílené artefakty — doplnit URL, pak se aktivují automaticky
+  const ARTIFACT_LINKS = {
+    'qr-platby': '',
+    'skill-tree': '',
+    'dashboard': '',
+    'rsvp': '',
+    'pdf-to-text': '',
+    'lanparty': '',
+    'psani-10': ''
   };
-  Object.entries(shots).forEach(([id, src]) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const img = new Image();
-    img.onload = () => { el.classList.add('has-img'); el.style.backgroundImage = 'url(' + src + ')'; el.textContent = ''; };
-    img.src = src;
+  document.querySelectorAll('[data-artifact]').forEach(a => {
+    const url = ARTIFACT_LINKS[a.dataset.artifact];
+    if (url) {
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.classList.remove('pending');
+    }
   });
 
+  const NAVODY = {
+    gpt: {
+      title: 'ChatGPT · Custom GPT',
+      file: '../download/asistent-pokyny-chatgpt.md',
+      html: `
+        <h4>1. Co otevřít</h4>
+        <ol>
+          <li><strong>chatgpt.com</strong> → Explore GPTs → Create → Configure</li>
+        </ol>
+        <h4>2. Pole po poli</h4>
+        <table>
+          <tr><th>Pole</th><th>Co vyplnit</th></tr>
+          <tr><td>Name</td><td><code>Asistent na prd</code></td></tr>
+          <tr><td>Description</td><td>Krátký popis — mechanický asistent, prd → PRD</td></tr>
+          <tr><td>Instructions</td><td>Celý obsah záložky <strong>Pokyny</strong></td></tr>
+          <tr><td>Conversation starters</td><td>4 startery (viz web materiály)</td></tr>
+        </table>
+        <h4>3. Co zaškrtnout</h4>
+        <ul>
+          <li>✅ Code Interpreter &amp; Data Analysis</li>
+          <li>☐ DALL-E · ☐ Web Search</li>
+        </ul>
+        <h4>4. Test</h4>
+        <p>Napiš: <em>Mám nápad na aplikaci.</em> — musí projít Fázi 1, neskočí na kód.</p>
+      `
+    },
+    claude: {
+      title: 'Claude · Project',
+      file: '../download/asistent-pokyny-claude.md',
+      html: `
+        <h4>1. Co otevřít</h4>
+        <ol>
+          <li><strong>claude.ai</strong> → Projects → New project</li>
+          <li>Pojmenuj: <code>Asistent na prd</code></li>
+        </ol>
+        <h4>2. Kam vložit pokyny</h4>
+        <ol>
+          <li>Project settings → <strong>Project Instructions</strong></li>
+          <li>Vlož celý obsah záložky <strong>Pokyny</strong></li>
+        </ol>
+        <h4>3. Co zaškrtnout</h4>
+        <p>Claude nemá capabilities checkboxy — stačí Instructions. Nepřidávej druhý system prompt.</p>
+        <h4>4. Test</h4>
+        <p>Napiš: <em>Mám nápad na aplikaci.</em> — představí se, osloví „Pane", 3 otázky.</p>
+      `
+    },
+    gem: {
+      title: 'Gemini · Gem',
+      file: '../download/asistent-pokyny-gemini.md',
+      html: `
+        <h4>1. Co otevřít</h4>
+        <ol>
+          <li><strong>gemini.google.com</strong> → Gems → New Gem</li>
+        </ol>
+        <h4>2. Pole</h4>
+        <table>
+          <tr><th>Pole</th><th>Co vyplnit</th></tr>
+          <tr><td>Name</td><td><code>Asistent na prd</code></td></tr>
+          <tr><td>Description</td><td>Volitelné — krátký popis</td></tr>
+          <tr><td>Instructions</td><td>Celý obsah záložky <strong>Pokyny</strong></td></tr>
+        </table>
+        <h4>3. Pozor</h4>
+        <p>Gemini občas opouští roli — pokyny mají guardrails. Při úniku restartuj chat.</p>
+        <h4>4. Test</h4>
+        <p>Napiš: <em>Mám nápad na aplikaci.</em></p>
+      `
+    }
+  };
+
   const modal = document.getElementById('modal');
-  const modalBody = document.getElementById('modal-body');
+  const panelNavod = document.getElementById('panel-navod');
+  const pokynyText = document.getElementById('pokyny-text');
   const modalTitle = document.getElementById('modal-title');
   const modalDl = document.getElementById('modal-dl');
-  function closeModal(){ modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); }
+  const footNavod = document.getElementById('modal-foot-navod');
+  const footPokyny = document.getElementById('modal-foot-pokyny');
+  let currentPlat = null;
+  let pokynyRaw = '';
+
+  function setTab(tab){
+    document.querySelectorAll('.modal-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+    document.getElementById('panel-navod').classList.toggle('active', tab === 'navod');
+    document.getElementById('panel-pokyny').classList.toggle('active', tab === 'pokyny');
+    footNavod.classList.toggle('hidden', tab !== 'navod');
+    footPokyny.classList.toggle('hidden', tab !== 'pokyny');
+  }
+
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+  }
+
   document.getElementById('modal-close').onclick = closeModal;
   modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.querySelectorAll('.modal-tab').forEach(tab => {
+    tab.addEventListener('click', () => setTab(tab.dataset.tab));
+  });
+  document.getElementById('goto-pokyny').onclick = () => setTab('pokyny');
+
   document.querySelectorAll('.plat-btn').forEach(btn => {
     btn.addEventListener('click', async () => {
+      const plat = NAVODY[btn.dataset.plat];
+      if (!plat) return;
+      currentPlat = plat;
+      modalTitle.textContent = plat.title;
+      panelNavod.innerHTML = plat.html;
+      setTab('navod');
       try {
-        const res = await fetch(btn.dataset.file);
-        const text = await res.text();
-        modalTitle.textContent = btn.dataset.title;
-        modalBody.textContent = text;
-        modalDl.href = btn.dataset.file;
-        modalDl.download = btn.dataset.file.split('/').pop();
-        modal.classList.add('open');
-        modal.setAttribute('aria-hidden','false');
-      } catch (_) { window.open(btn.dataset.file, '_blank'); }
+        const res = await fetch(plat.file);
+        pokynyRaw = res.ok ? await res.text() : 'Soubor pokynů se nepodařilo načíst.';
+      } catch (_) {
+        pokynyRaw = 'Soubor pokynů se nepodařilo načíst.';
+      }
+      pokynyText.textContent = pokynyRaw;
+      modalDl.href = plat.file;
+      modalDl.download = plat.file.split('/').pop();
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
     });
   });
+
   document.getElementById('modal-copy').onclick = async () => {
     try {
-      await navigator.clipboard.writeText(modalBody.textContent);
-      document.getElementById('modal-copy').textContent = 'Zkopírováno';
-      setTimeout(() => { document.getElementById('modal-copy').textContent = 'Kopírovat'; }, 2000);
+      await navigator.clipboard.writeText(pokynyRaw);
+      const btn = document.getElementById('modal-copy');
+      btn.textContent = 'Zkopírováno';
+      setTimeout(() => { btn.textContent = 'Kopírovat'; }, 2000);
     } catch (_) { alert('Kopírování selhalo — stáhni .md ručně.'); }
   };
 })();
