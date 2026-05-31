@@ -190,6 +190,10 @@
     .modal-foot.hidden { display: none; }
 
     @media screen { .slide { opacity: 0; transition: opacity .25s; } .slide.active { opacity: 1; } }
+    /* Mobil / úzké okno — QR nemá smysl (člověk už je na webu) */
+    @media (max-width: 768px) {
+      .top-qr { display: none !important; }
+    }
     @media print {
       @page { size: landscape; margin: 0; }
       html, body { overflow: visible; }
