@@ -195,12 +195,20 @@
       .top-qr { display: none !important; }
     }
     @media print {
-      @page { size: landscape; margin: 0; }
-      html, body { overflow: visible; }
-      #stage { position: static; display: block; }
-      #scaler { width: 100% !important; height: auto !important; transform: none !important; }
-      .slide { position: relative !important; display: block !important; width: 1600px !important; height: 900px !important; page-break-after: always; opacity: 1 !important; print-color-adjust: exact; }
+      @page { size: 297mm 210mm; margin: 0; }
+      html, body { width: 297mm; height: auto; overflow: visible; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      #stage { position: static; display: block; width: 297mm; height: auto; }
+      #scaler { width: 297mm !important; height: auto !important; transform: none !important; }
+      .slide {
+        position: relative !important; display: block !important;
+        width: 1600px !important; height: 900px !important;
+        zoom: 0.7016; page-break-after: always; break-after: page;
+        overflow: hidden; opacity: 1 !important;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }
+      .slide:last-child { page-break-after: auto; break-after: auto; }
       #top-qr, #bottom-dock, #progress, .speaker-note, .modal { display: none !important; }
+      * { transition: none !important; animation: none !important; }
     }
   </style>
 </head>
@@ -447,6 +455,10 @@
   document.getElementById('prev').onclick = () => show(i-1);
   document.getElementById('next').onclick = () => show(i+1);
   updateTopQr(0);
+  window.addEventListener('beforeprint', () => {
+    slides.forEach(s => { s.style.display = 'block'; s.classList.add('active'); });
+  });
+  window.addEventListener('afterprint', () => show(i));
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); show(i+1); }
     if (e.key === 'ArrowLeft') show(i-1);
