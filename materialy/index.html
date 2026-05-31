@@ -36,8 +36,31 @@
     .modal-box { background:var(--card); border:1px solid var(--border); border-radius:16px; width:min(920px,96vw); max-height:88vh; display:flex; flex-direction:column; overflow:hidden; }
     .modal-head { padding:18px 22px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
     .modal-close { background:none; border:none; color:var(--muted); font-size:26px; cursor:pointer; }
-    .modal-body { padding:18px 22px; overflow:auto; flex:1; font-family:var(--mono); font-size:12px; line-height:1.55; color:var(--muted); white-space:pre-wrap; }
+    .modal-body { padding:18px 22px; overflow:auto; flex:1; }
+    .modal-body.pokyny-panel { font-family:var(--mono); font-size:12px; line-height:1.55; color:var(--muted); white-space:pre-wrap; }
+    .navod-panel { font-family:var(--sans); font-size:1rem; line-height:1.6; color:var(--text); }
+    .navod-panel h4 { font-size:1rem; font-weight:700; color:var(--lime); margin:22px 0 10px; letter-spacing:.02em; }
+    .navod-panel h4:first-child { margin-top:0; }
+    .navod-panel ol, .navod-panel ul { padding-left:1.35rem; margin:8px 0 12px; color:var(--muted); }
+    .navod-panel li { margin-bottom:6px; }
+    .navod-panel li strong { color:var(--text); }
+    .navod-panel p { margin:8px 0; color:var(--muted); }
+    .navod-panel table { width:100%; border-collapse:collapse; font-size:.92rem; margin:12px 0; }
+    .navod-panel th, .navod-panel td { border:1px solid var(--border); padding:10px 12px; text-align:left; vertical-align:top; }
+    .navod-panel th { color:var(--lime); font-weight:600; background:rgba(217,250,167,.06); }
+    .navod-panel td { color:var(--muted); }
+    .navod-panel code { font-family:var(--mono); font-size:.88em; background:rgba(255,255,255,.06); padding:2px 6px; border-radius:4px; color:var(--text); }
+    .navod-callout { background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:10px; padding:14px 16px; margin:10px 0; font-family:var(--mono); font-size:.88rem; color:var(--text); line-height:1.7; }
+    .navod-result { display:flex; flex-direction:column; gap:8px; margin:12px 0; }
+    .navod-ok, .navod-bad { padding:12px 14px; border-radius:10px; font-size:.92rem; margin:0; }
+    .navod-ok { background:rgba(217,250,167,.08); border:1px solid rgba(217,250,167,.28); color:var(--text); }
+    .navod-ok strong { color:var(--lime); }
+    .navod-bad { background:rgba(248,113,113,.08); border:1px solid rgba(248,113,113,.25); color:var(--text); }
+    .navod-bad strong { color:#f87171; }
+    .navod-panel blockquote { margin:10px 0; padding:12px 16px; border-left:3px solid var(--lime); background:rgba(217,250,167,.06); color:var(--text); font-style:italic; border-radius:0 8px 8px 0; }
+    .modal-foot.hidden { display:none; }
     .modal-foot { padding:14px 22px; border-top:1px solid var(--border); display:flex; gap:10px; flex-wrap:wrap; }
+    .hidden { display:none !important; }
     .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:var(--lime); color:#0a0a0a; padding:10px 20px; border-radius:8px; font-weight:600; opacity:0; transition:opacity .25s; pointer-events:none; }
     .toast.show { opacity:1; }
   </style>
@@ -56,24 +79,24 @@
         <div class="plat-head"><div class="plat-icon gpt">GPT</div><h3>ChatGPT · Custom GPT</h3></div>
         <p class="plat-desc"><strong>Návod</strong> — kam kliknout, co vyplnit, co zaškrtnout.<br><strong>Pokyny</strong> — čistý text do pole Instructions.</p>
         <div class="actions">
-          <button type="button" class="btn btn-navod modal-open" data-file="../download/asistent-navod-chatgpt.md" data-title="ChatGPT · Návod">Návod</button>
-          <button type="button" class="btn btn-pokyny modal-open" data-file="../download/asistent-pokyny-chatgpt.md" data-title="ChatGPT · Pokyny">Pokyny</button>
+          <button type="button" class="btn btn-navod modal-open" data-type="navod" data-plat="gpt" data-title="ChatGPT · Návod">Návod</button>
+          <button type="button" class="btn btn-pokyny modal-open" data-type="pokyny" data-plat="gpt" data-file="../download/asistent-pokyny-chatgpt.md" data-title="ChatGPT · Pokyny">Pokyny</button>
         </div>
       </article>
       <article class="plat">
         <div class="plat-head"><div class="plat-icon claude">Cl</div><h3>Claude · Project</h3></div>
         <p class="plat-desc"><strong>Návod</strong> — Project Instructions.<br><strong>Pokyny</strong> — celý obsah pole.</p>
         <div class="actions">
-          <button type="button" class="btn btn-navod modal-open" data-file="../download/asistent-navod-claude.md" data-title="Claude · Návod">Návod</button>
-          <button type="button" class="btn btn-pokyny modal-open" data-file="../download/asistent-pokyny-claude.md" data-title="Claude · Pokyny">Pokyny</button>
+          <button type="button" class="btn btn-navod modal-open" data-type="navod" data-plat="claude" data-title="Claude · Návod">Návod</button>
+          <button type="button" class="btn btn-pokyny modal-open" data-type="pokyny" data-plat="claude" data-file="../download/asistent-pokyny-claude.md" data-title="Claude · Pokyny">Pokyny</button>
         </div>
       </article>
       <article class="plat">
         <div class="plat-head"><div class="plat-icon gem">Gem</div><h3>Gemini · Gem</h3></div>
         <p class="plat-desc"><strong>Návod</strong> — New Gem, Instructions.<br><strong>Pokyny</strong> — čistý system prompt.</p>
         <div class="actions">
-          <button type="button" class="btn btn-navod modal-open" data-file="../download/asistent-navod-gemini.md" data-title="Gemini · Návod">Návod</button>
-          <button type="button" class="btn btn-pokyny modal-open" data-file="../download/asistent-pokyny-gemini.md" data-title="Gemini · Pokyny">Pokyny</button>
+          <button type="button" class="btn btn-navod modal-open" data-type="navod" data-plat="gem" data-title="Gemini · Návod">Návod</button>
+          <button type="button" class="btn btn-pokyny modal-open" data-type="pokyny" data-plat="gem" data-file="../download/asistent-pokyny-gemini.md" data-title="Gemini · Pokyny">Pokyny</button>
         </div>
       </article>
     </div>
@@ -84,8 +107,12 @@
   <div class="modal" id="modal">
     <div class="modal-box">
       <div class="modal-head"><h3 id="modal-title">Materiál</h3><button type="button" class="modal-close" id="modal-close">×</button></div>
-      <pre class="modal-body" id="modal-body"></pre>
-      <div class="modal-foot">
+      <div class="modal-body navod-panel" id="modal-navod"></div>
+      <pre class="modal-body pokyny-panel hidden" id="modal-pokyny"></pre>
+      <div class="modal-foot" id="modal-foot-navod">
+        <button type="button" class="btn btn-navod" id="goto-pokyny">Pokyny → kopírovat</button>
+      </div>
+      <div class="modal-foot hidden" id="modal-foot-pokyny">
         <button type="button" class="btn btn-pokyny" id="modal-copy">Kopírovat</button>
         <a class="btn btn-navod" id="modal-dl" href="#" download>Stáhnout .md</a>
       </div>
@@ -94,26 +121,186 @@
   <div class="toast" id="toast">Zkopírováno</div>
 
   <script>
+    const NAVODY = {
+      gpt: {
+        title: 'ChatGPT · Návod',
+        pokynyFile: '../download/asistent-pokyny-chatgpt.md',
+        html: `
+          <h4>1. Co otevřít</h4>
+          <ol>
+            <li><strong>chatgpt.com</strong> → <strong>Explore GPTs</strong> → <strong>Create</strong> (vpravo nahoře)</li>
+            <li>Zvol <strong>Configure</strong> (ne Assistant)</li>
+          </ol>
+          <h4>2. Pole po poli</h4>
+          <table>
+            <tr><th>Pole</th><th>Co vyplnit</th></tr>
+            <tr><td>Name</td><td><code>Asistent na prd</code></td></tr>
+            <tr><td>Description</td><td>Mechanický asistent — promění neurčitý nápad v PRD pro AI kódery</td></tr>
+            <tr><td>Instructions</td><td>Celý obsah z tlačítka <strong>Pokyny</strong></td></tr>
+            <tr><td>Conversation starters</td><td>4 řádky níže</td></tr>
+          </table>
+          <h4>Conversation starters</h4>
+          <div class="navod-callout">
+            Mám nápad na aplikaci...<br>
+            Chci postavit něco jako Notion, ale jednodušší.<br>
+            Nevím kde začít s Vibecodingem.<br>
+            Jak z mého nápadu udělat funkční Artefakt v Claude?
+          </div>
+          <h4>3. Co zaškrtnout</h4>
+          <ul>
+            <li>✅ <strong>Code Interpreter &amp; Data Analysis</strong></li>
+            <li>☐ DALL-E Image Generation</li>
+            <li>☐ Web Search</li>
+          </ul>
+          <h4>4. Uložit a test</h4>
+          <ol>
+            <li><strong>Save</strong> → Only me nebo Anyone with a link</li>
+            <li>Nový chat → starter <em>Mám nápad na aplikaci...</em></li>
+          </ol>
+          <div class="navod-result">
+            <p class="navod-ok"><strong>Správně:</strong> úvodní monolog + Fáze 1 (3 otázky)</p>
+            <p class="navod-bad"><strong>Špatně:</strong> okamžitý kód nebo obecný ChatGPT bez role</p>
+          </div>
+          <h4>5. Tip</h4>
+          <p>Instructions vlož až po zkopírování z <strong>Pokyny</strong> — ne celý soubor s nadpisy NAME/DESCRIPTION.</p>
+        `
+      },
+      claude: {
+        title: 'Claude · Návod',
+        pokynyFile: '../download/asistent-pokyny-claude.md',
+        html: `
+          <h4>1. Co otevřít</h4>
+          <ol>
+            <li><strong>claude.ai</strong> (přihlášený účet)</li>
+            <li><strong>Projects</strong> → <strong>New project</strong></li>
+            <li>Pojmenuj: <code>Asistent na prd</code></li>
+          </ol>
+          <h4>2. Kam vložit pokyny</h4>
+          <ol>
+            <li><strong>Project settings</strong> (ozubené kolečko)</li>
+            <li>Pole <strong>Project Instructions</strong> → vlož obsah z <strong>Pokyny</strong></li>
+            <li>Ulož</li>
+          </ol>
+          <h4>3. Volitelné</h4>
+          <ul>
+            <li><strong>Project knowledge</strong> — cheatsheet stacku (není nutné pro první test)</li>
+            <li><strong>Model</strong> — stačí Sonnet; roli drží Instructions</li>
+          </ul>
+          <h4>4. Co nastavit</h4>
+          <p>Claude nemá capabilities checkboxy — stačí <strong>Instructions</strong>. Nepřidávej druhý system prompt.</p>
+          <h4>5. Test</h4>
+          <blockquote>Mám nápad na aplikaci.</blockquote>
+          <div class="navod-result">
+            <p class="navod-ok"><strong>Správně:</strong> představí se, osloví „Pane“, 3 otázky Fáze 1</p>
+            <p class="navod-bad"><strong>Špatně:</strong> rovnou HTML nebo souhlasí se vším</p>
+          </div>
+          <h4>6. Sdílení</h4>
+          <p>Project lze sdílet linkem — vhodné pro live demo na festivalu.</p>
+        `
+      },
+      gem: {
+        title: 'Gemini · Návod',
+        pokynyFile: '../download/asistent-pokyny-gemini.md',
+        html: `
+          <h4>1. Co otevřít</h4>
+          <ol>
+            <li><strong>gemini.google.com</strong></li>
+            <li><strong>Gems</strong> → <strong>New Gem</strong></li>
+          </ol>
+          <h4>2. Pole</h4>
+          <table>
+            <tr><th>Pole</th><th>Co vyplnit</th></tr>
+            <tr><td>Name</td><td><code>Asistent na prd</code></td></tr>
+            <tr><td>Description</td><td>Volitelné — krátký popis asistenta</td></tr>
+            <tr><td>Instructions</td><td>Celý obsah z tlačítka <strong>Pokyny</strong></td></tr>
+          </table>
+          <h4>3. Co zaškrtnout</h4>
+          <p>Gemini Gems nemají capabilities jako GPT — jen <strong>Instructions</strong>.</p>
+          <h4>4. Uložit a test</h4>
+          <ol>
+            <li><strong>Save</strong></li>
+            <li>Otevři Gem → napiš: <strong>Mám nápad na aplikaci.</strong></li>
+          </ol>
+          <div class="navod-result">
+            <p class="navod-ok"><strong>Správně:</strong> role Asistenta, „Pane“, Fáze 1</p>
+            <p class="navod-bad"><strong>Špatně:</strong> obecný Gemini nebo okamžitý kód</p>
+          </div>
+          <h4>5. Pozor u Gemini</h4>
+          <p>Gemini občas opouští roli. Pokyny mají guardrails — při úniku restartuj chat nebo napiš znovu: <em>Mám nápad na aplikaci.</em></p>
+          <h4>6. Sdílení</h4>
+          <p>Gem lze sdílet linkem účastníkům.</p>
+        `
+      }
+    };
+
     const modal = document.getElementById('modal');
-    const modalBody = document.getElementById('modal-body');
+    const modalNavod = document.getElementById('modal-navod');
+    const modalPokyny = document.getElementById('modal-pokyny');
     const modalTitle = document.getElementById('modal-title');
     const modalDl = document.getElementById('modal-dl');
+    const footNavod = document.getElementById('modal-foot-navod');
+    const footPokyny = document.getElementById('modal-foot-pokyny');
     const toast = document.getElementById('toast');
+    let currentPlat = null;
+    let pokynyRaw = '';
+
+    function showMode(mode) {
+      const isNavod = mode === 'navod';
+      modalNavod.classList.toggle('hidden', !isNavod);
+      modalPokyny.classList.toggle('hidden', isNavod);
+      footNavod.classList.toggle('hidden', !isNavod);
+      footPokyny.classList.toggle('hidden', isNavod);
+    }
+
     function closeModal(){ modal.classList.remove('open'); }
+
     document.getElementById('modal-close').onclick = closeModal;
     modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+
+    async function openPokyny(plat) {
+      const cfg = NAVODY[plat];
+      if (!cfg) return;
+      currentPlat = plat;
+      modalTitle.textContent = cfg.title.replace('Návod', 'Pokyny');
+      try {
+        const res = await fetch(cfg.pokynyFile);
+        pokynyRaw = res.ok ? await res.text() : 'Soubor pokynů se nepodařilo načíst.';
+      } catch (_) {
+        pokynyRaw = 'Soubor pokynů se nepodařilo načíst.';
+      }
+      modalPokyny.textContent = pokynyRaw;
+      modalDl.href = cfg.pokynyFile;
+      modalDl.download = cfg.pokynyFile.split('/').pop();
+      showMode('pokyny');
+      modal.classList.add('open');
+    }
+
     document.querySelectorAll('.modal-open').forEach(btn => {
       btn.addEventListener('click', async () => {
-        const res = await fetch(btn.dataset.file);
+        const plat = btn.dataset.plat;
+        const cfg = NAVODY[plat];
+        if (!cfg) return;
+        currentPlat = plat;
+
+        if (btn.dataset.type === 'navod') {
+          modalTitle.textContent = btn.dataset.title || cfg.title;
+          modalNavod.innerHTML = cfg.html;
+          showMode('navod');
+          modal.classList.add('open');
+          return;
+        }
+
         modalTitle.textContent = btn.dataset.title;
-        modalBody.textContent = res.ok ? await res.text() : 'Soubor se nepodařilo načíst.';
-        modalDl.href = btn.dataset.file;
-        modalDl.download = btn.dataset.file.split('/').pop();
-        modal.classList.add('open');
+        await openPokyny(plat);
       });
     });
+
+    document.getElementById('goto-pokyny').onclick = () => {
+      if (currentPlat) openPokyny(currentPlat);
+    };
+
     document.getElementById('modal-copy').onclick = async () => {
-      await navigator.clipboard.writeText(modalBody.textContent);
+      await navigator.clipboard.writeText(pokynyRaw);
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 2000);
     };
