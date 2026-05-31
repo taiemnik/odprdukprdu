@@ -111,6 +111,19 @@
     .disclaimer { font-size: var(--fs-body-sm); color: var(--muted); font-style: italic; margin-top: 8px; font-weight: 500; }
     .muted-aside { color: var(--muted); font-size: var(--fs-body-sm); font-weight: 500; }
 
+    .slide-anatomy .h2 { font-size: 72px; }
+    .slide-anatomy .slide-inner { gap: 14px; justify-content: flex-start; padding-top: calc(var(--safe) + 4px); }
+    .anatomy-lead { font-size: 26px; line-height: 1.32; color: var(--muted); font-weight: 500; }
+    .anatomy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; flex: 1; min-height: 0; align-content: start; }
+    .anatomy-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
+    .anatomy-item.full { grid-column: 1 / -1; }
+    .anatomy-head { font-size: 19px; font-weight: 700; color: var(--accent-lime); margin-bottom: 5px; line-height: 1.2; }
+    .anatomy-quote { font-size: 17px; line-height: 1.28; color: var(--text); margin-bottom: 5px; font-weight: 500; }
+    .anatomy-flow { font-family: var(--ff-mono); font-size: 16px; line-height: 1.35; color: var(--text); margin-bottom: 5px; font-weight: 600; }
+    .anatomy-flow .arrow { color: var(--accent-lime); padding: 0 6px; }
+    .anatomy-effect { font-size: 16px; line-height: 1.28; color: var(--muted); font-weight: 500; }
+    .anatomy-effect strong { color: var(--accent-strong); font-weight: 700; }
+
     .slide-inspire .h2 { font-size: 74px; }
     .slide-inspire .slide-inner { gap: 20px; }
     .inspire-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 20px; flex: 1; align-content: center; max-width: none; width: 100%; }
@@ -213,7 +226,7 @@
   </style>
 </head>
 <body class="page-prezentace">
-<div id="progress" style="width:12.5%"></div>
+<div id="progress" style="width:11.11%"></div>
 <div id="stage"><div id="scaler">
 
   <!-- 1 Hero -->
@@ -313,8 +326,44 @@
     <div class="speaker-note">Do AI struktura Excelu, ne produkční data.</div>
   </div>
 
-  <!-- 6 Asistent na prd -->
-  <div class="slide" data-n="6">
+  <!-- 6 Anatomie PRDu -->
+  <div class="slide slide-anatomy" data-n="6">
+    <div class="slide-inner">
+      <h2 class="h2">Anatomie <span class="em">PRDu</span></h2>
+      <p class="anatomy-lead">Je to mapa vašeho záměru, která dává AI jasné souřadnice, aby nemusela hádat, co jste vlastně chtěli vytvořit.</p>
+      <div class="anatomy-grid">
+        <div class="anatomy-item">
+          <div class="anatomy-head">1. Cíl — Co to řeší</div>
+          <p class="anatomy-quote">„Chci aplikaci, která mi vygeneruje QR kód pro platbu školkovného, abych nemusel hledat číslo účtu v e-mailech.“</p>
+          <p class="anatomy-effect"><strong>Proč:</strong> Aby AI pochopila smysl existence té věci.</p>
+        </div>
+        <div class="anatomy-item">
+          <div class="anatomy-head">2. Uživatel — Kdo to používá</div>
+          <p class="anatomy-quote">„Rodič v ranním stresu, který má v jedné ruce brečící dítě a v druhé mobil.“</p>
+          <p class="anatomy-effect"><strong>Důsledek:</strong> AI pochopí, že ovládání musí být na jeden palec a obří tlačítka.</p>
+        </div>
+        <div class="anatomy-item">
+          <div class="anatomy-head">3. Cesta uživatele (User Flow)</div>
+          <p class="anatomy-flow">1. Otevřu <span class="arrow">→</span> 2. Napíšu částku <span class="arrow">→</span> 3. Vyjede QR kód <span class="arrow">→</span> 4. Hotovo.</p>
+          <p class="anatomy-effect"><strong>Důsledek:</strong> AI nenavrhne 5 zbytečných podstránek.</p>
+        </div>
+        <div class="anatomy-item">
+          <div class="anatomy-head">4. Funkční minimum</div>
+          <p class="anatomy-quote">Pole pro zadání částky, tlačítko „Generovat“, zobrazení obrázku s QR kódem.</p>
+          <p class="anatomy-effect"><strong>Pravidlo:</strong> Pokud to tam není napsané, pro AI to neexistuje.</p>
+        </div>
+        <div class="anatomy-item full">
+          <div class="anatomy-head">5. Omezení a Data (The Guardrails)</div>
+          <p class="anatomy-effect"><strong>Pravidla:</strong> „Data se neukládají na server, vše se děje v prohlížeči. Barvy jako na webu školky.“</p>
+          <p class="anatomy-effect" style="margin-top:5px;"><strong>Důsledek:</strong> Bezpečnost a design jsou vyřešeny hned v prvním promptu.</p>
+        </div>
+      </div>
+    </div>
+    <div class="speaker-note">5 bloků = kompletní PRD. Ukázka na školkovném — propojení se slide 2 a bezpečností.</div>
+  </div>
+
+  <!-- 7 Asistent na prd -->
+  <div class="slide" data-n="7">
     <div class="slide-inner">
       <h2 class="h2">Asistent na <span class="em">PRD</span></h2>
       <div class="split">
@@ -335,8 +384,8 @@
     <div class="speaker-note">Live demo: tlačítka → Návod + Pokyny. Test: „Mám nápad na aplikaci."</div>
   </div>
 
-  <!-- 7 Příklady -->
-  <div class="slide slide-inspire" data-n="7">
+  <!-- 8 Příklady -->
+  <div class="slide slide-inspire" data-n="8">
     <div class="slide-inner" style="gap:20px;">
       <h2 class="h2">Příklady pro <span class="em">inspiraci</span></h2>
       <div class="inspire-grid">
@@ -369,8 +418,8 @@
     <div class="speaker-note">2 min. Klikni na odkaz — nebo inspirace na webu taiemnik.github.io/odprdukprdu/inspirace/</div>
   </div>
 
-  <!-- 8 Konec -->
-  <div class="slide goodbye-slide" data-n="8">
+  <!-- 9 Konec -->
+  <div class="slide goodbye-slide" data-n="9">
     <div class="slide-inner goodbye-inner">
       <h2 class="motiv-title">Motivační citát</h2>
       <p class="motiv-sub">… vůbec ho netvořila AI</p>
@@ -436,12 +485,12 @@
   function updateTopQr(slideIndex) {
     if (!topQr || !topQrImg) return;
     const slideNum = slides[slideIndex]?.dataset?.n ? parseInt(slides[slideIndex].dataset.n, 10) : slideIndex + 1;
-    if (slideNum === 8) {
+    if (slideNum === 9) {
       topQr.classList.add('hidden');
       return;
     }
     topQr.classList.remove('hidden');
-    const url = slideNum === 6 ? QR_MATERIALY : QR_DEFAULT;
+    const url = slideNum === 7 ? QR_MATERIALY : QR_DEFAULT;
     topQr.href = url;
     topQrImg.src = qrApi(url);
   }
