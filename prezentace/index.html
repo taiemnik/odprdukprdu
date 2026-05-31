@@ -205,19 +205,49 @@
     @media (max-width: 768px) {
       .top-qr { display: none !important; }
     }
+    .slide-qr { display: none; }
+
     @media print {
       @page { size: 297mm 210mm; margin: 0; }
-      html, body { width: 297mm; height: auto; overflow: visible; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      #stage { position: static; display: block; width: 297mm; height: auto; }
+      html, body {
+        width: 297mm; height: auto; margin: 0; padding: 0; overflow: visible;
+        background: #050505 !important;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }
+      #stage { position: static; display: block; width: 297mm; height: auto; background: #050505; }
       #scaler { width: 297mm !important; height: auto !important; transform: none !important; }
       .slide {
-        position: relative !important; display: block !important;
-        width: 1600px !important; height: 900px !important;
-        zoom: 0.7016; page-break-after: always; break-after: page;
-        overflow: hidden; opacity: 1 !important;
+        position: relative !important; display: flex !important;
+        align-items: center !important; justify-content: center !important;
+        width: 297mm !important; height: 210mm !important;
+        min-height: 210mm !important; max-height: 210mm !important;
+        margin: 0 !important; padding: 0 !important;
+        zoom: 1 !important; transform: none !important;
+        page-break-after: always; break-after: page; break-inside: avoid;
+        overflow: hidden !important; opacity: 1 !important;
+        background: #050505 !important; box-sizing: border-box;
         -webkit-print-color-adjust: exact; print-color-adjust: exact;
       }
       .slide:last-child { page-break-after: auto; break-after: auto; }
+      .slide-canvas {
+        position: relative !important;
+        width: 1600px !important; height: 900px !important;
+        flex-shrink: 0;
+        transform: scale(0.7015625);
+        transform-origin: center center;
+        overflow: hidden;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }
+      .slide-qr {
+        display: block !important;
+        position: absolute; top: 16px; right: 16px; z-index: 30;
+        width: 190px; height: 190px; background: #fff; border-radius: 10px; padding: 6px;
+        box-sizing: border-box; box-shadow: 0 4px 20px rgba(0,0,0,.45);
+      }
+      .slide-qr img {
+        width: 100%; height: 100%; display: block;
+        image-rendering: pixelated; image-rendering: crisp-edges;
+      }
       #top-qr, #bottom-dock, #progress, .speaker-note, .modal { display: none !important; }
       * { transition: none !important; animation: none !important; }
     }
@@ -455,7 +485,7 @@
 <aside id="bottom-dock" class="bottom-dock" aria-label="Navigace a AI">
   <nav id="nav">
     <button type="button" id="prev" aria-label="Předchozí">←</button>
-    <span id="counter">1 / 8</span>
+    <span id="counter">1 / 9</span>
     <button type="button" id="next" aria-label="Další">→</button>
   </nav>
   <div id="dock-ai-mount"></div>
@@ -475,6 +505,43 @@
   function qrApi(url) {
     return 'https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=' + encodeURIComponent(url);
   }
+  function preparePrintLayout() {
+    slides.forEach(slide => {
+      if (slide.dataset.printReady === '1') return;
+      const canvas = document.createElement('div');
+      canvas.className = 'slide-canvas';
+      [...slide.childNodes].forEach(node => {
+        if (node.nodeType === 1 && node.classList.contains('speaker-note')) return;
+        canvas.appendChild(node);
+      });
+      slide.appendChild(canvas);
+      const slideNum = parseInt(slide.dataset.n, 10);
+      if (slideNum !== 9) {
+        const url = slideNum === 7 ? QR_MATERIALY : QR_DEFAULT;
+        const qr = document.createElement('div');
+        qr.className = 'slide-qr';
+        const img = document.createElement('img');
+        img.src = qrApi(url);
+        img.alt = 'QR kód materiálů';
+        qr.appendChild(img);
+        canvas.appendChild(qr);
+      }
+      slide.dataset.printReady = '1';
+    });
+  }
+  function teardownPrintLayout() {
+    slides.forEach(slide => {
+      if (slide.dataset.printReady !== '1') return;
+      const canvas = slide.querySelector('.slide-canvas');
+      if (!canvas) return;
+      while (canvas.firstChild) slide.insertBefore(canvas.firstChild, canvas);
+      canvas.remove();
+      delete slide.dataset.printReady;
+      slide.style.display = '';
+    });
+  }
+  window.preparePrintLayout = preparePrintLayout;
+  window.teardownPrintLayout = teardownPrintLayout;
   function updateTopQr(slideIndex) {
     if (!topQr || !topQrImg) return;
     const slideNum = slides[slideIndex]?.dataset?.n ? parseInt(slides[slideIndex].dataset.n, 10) : slideIndex + 1;
@@ -498,9 +565,13 @@
   document.getElementById('next').onclick = () => show(i+1);
   updateTopQr(0);
   window.addEventListener('beforeprint', () => {
-    slides.forEach(s => { s.style.display = 'block'; s.classList.add('active'); });
+    preparePrintLayout();
+    slides.forEach(s => { s.style.display = 'flex'; s.classList.add('active'); });
   });
-  window.addEventListener('afterprint', () => show(i));
+  window.addEventListener('afterprint', () => {
+    teardownPrintLayout();
+    show(i);
+  });
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); show(i+1); }
     if (e.key === 'ArrowLeft') show(i-1);
