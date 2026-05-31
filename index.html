@@ -107,7 +107,9 @@
       border-top: 1px solid var(--border);
       color: var(--muted); font-size: .85rem;
     }
-    footer img { height: 36px; opacity: .9; margin-top: 14px; }
+    footer a { display: inline-block; text-decoration: none; margin-top: 14px; }
+    footer a:hover img { opacity: 1; }
+    footer img { height: 36px; opacity: .9; display: block; }
 
     .qr-overlay {
       position: fixed; inset: 0; z-index: 1000;
@@ -175,7 +177,9 @@
     </div>
 
     <footer>
-      <img src="assets/supported-by-cerna-ai.svg" alt="Supported by CERNA.AI FEST">
+      <a href="https://cerna.ai/" target="_blank" rel="noopener noreferrer">
+        <img src="assets/supported-by-cerna-ai.svg" alt="Supported by CERNA.AI FEST">
+      </a>
     </footer>
   </div>
 
