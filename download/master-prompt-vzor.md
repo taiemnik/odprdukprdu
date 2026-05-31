@@ -1,6 +1,6 @@
-# Master Prompt — vzor výstupu (Fáze 3 Krytona)
+# Master Prompt — vzor výstupu (Fáze 3 asistenta)
 
-Toto je **ukázka**, co má Kryton vygenerovat na konci. Zkopíruj do Claude / Cursor / Lovable a uprav detaily.
+Toto je **ukázka**, co má Asistent na prd vygenerovat na konci. Zkopíruj do Claude / Cursor / Lovable a uprav detaily.
 
 ---
 
@@ -54,4 +54,4 @@ Omezení:
 
 ---
 
-*Vygenerováno workflow Kryton · Od prdu k PRDu*
+*Vygenerováno Asistentem na prd · Od prdu k PRDu*

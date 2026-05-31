@@ -15,7 +15,7 @@ Od **prd** k něčemu, co funguje a jde sdílet. Zaškrtávej po cestě.
 ## 2. PRD (mapa myšlenky)
 
 - [ ] Mám must-have (max 5) vs nice-to-have (verze 2)
-- [ ] Prošel jsem nápad s **Krytonem** nebo šablonou PRD
+- [ ] Prošel jsem nápad s **Asistentem na prd** nebo šablonou PRD
 - [ ] Zeptal jsem AI: „Napiš 3 slabá místa v tomto návrhu“
 
 ---
