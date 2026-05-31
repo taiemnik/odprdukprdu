@@ -59,6 +59,13 @@
     .flow-label { font-family: var(--ff-mono); font-size: 16px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-lime); }
     .flow-line { font-family: var(--ff-mono); font-size: 32px; color: var(--text); font-weight: 700; letter-spacing: .02em; }
     .flow-line .arrow { color: var(--accent-lime); padding: 0 10px; }
+    .flow-vertical { display: flex; flex-direction: column; align-items: stretch; gap: 10px; width: 100%; }
+    .flow-step {
+      font-family: var(--ff-mono); font-size: 28px; font-weight: 700; text-align: center;
+      padding: 16px 20px; background: rgba(217,250,167,.08); border: 1px solid rgba(217,250,167,.28);
+      border-radius: 12px; color: var(--text);
+    }
+    .flow-arrow-down { color: var(--accent-lime); font-size: 40px; line-height: 1; text-align: center; font-weight: 700; }
 
     .bq-slide { background: linear-gradient(145deg, #0a0a0a 0%, #131313 50%, #0d0d0d 100%); }
     .bq-inner { text-align: center; gap: 36px; }
@@ -213,7 +220,13 @@
         </ul>
         <div class="split-side">
           <p class="flow-label">Dev flow</p>
-          <p class="flow-line">Nápad <span class="arrow">→</span> AI magie <span class="arrow">→</span> Řešení</p>
+          <div class="flow-vertical">
+            <span class="flow-step">Nápad</span>
+            <span class="flow-arrow-down" aria-hidden="true">↓</span>
+            <span class="flow-step">AI magie</span>
+            <span class="flow-arrow-down" aria-hidden="true">↓</span>
+            <span class="flow-step">Řešení</span>
+          </div>
         </div>
       </div>
     </div>
