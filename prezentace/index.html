@@ -27,20 +27,22 @@
     .slide { position: absolute; inset: 0; display: none; background: var(--bg-dark); overflow: hidden; }
     .slide.active { display: block; }
     .slide-bar { position: absolute; top: 0; left: 0; right: 0; height: 8px; background: var(--accent-lime); }
-    .slide-inner { position: absolute; inset: 0; padding: calc(var(--safe) + 12px) var(--safe) 64px var(--safe); display: flex; flex-direction: column; justify-content: center; gap: 32px; }
+    .slide-inner { position: absolute; inset: 0; padding: calc(var(--safe) + 12px) calc(var(--safe) + var(--dock-width) + 24px) 64px var(--safe); display: flex; flex-direction: column; justify-content: center; gap: 32px; }
+
+    .top-qr {
+      position: fixed; right: 16px; top: 16px; z-index: 200;
+      width: var(--dock-width); aspect-ratio: 1; background: #fff; border-radius: 10px; padding: 6px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.45); display: block;
+    }
+    .top-qr.hidden { display: none; }
+    .top-qr img { width: 100%; height: 100%; display: block; image-rendering: pixelated; image-rendering: crisp-edges; }
 
     .bottom-dock {
       position: fixed; right: 16px; bottom: 16px; z-index: 200;
       width: var(--dock-width); display: flex; flex-direction: column; align-items: stretch; gap: 8px;
     }
-    .dock-qr {
-      width: 100%; aspect-ratio: 1; background: #fff; border-radius: 10px; padding: 6px;
-      box-shadow: 0 4px 20px rgba(0,0,0,.45); display: block;
-    }
-    .dock-qr.hidden { display: none; }
-    .dock-qr img { width: 100%; height: 100%; display: block; image-rendering: pixelated; image-rendering: crisp-edges; }
-    #dock-ai-mount { width: 100%; position: relative; }
-    body.page-prezentace .ai-palette-container { position: relative; right: auto; bottom: auto; width: 100%; }
+    #dock-ai-mount { width: 100%; position: relative; flex-shrink: 0; }
+    body.page-prezentace .ai-palette-container { position: relative; right: auto; bottom: auto; width: 100%; z-index: 1; }
     body.page-prezentace .ai-palette-btn {
       width: 100%; border-radius: 10px; padding: 10px 8px; font-size: 12px; text-align: center;
       box-shadow: none; white-space: nowrap;
@@ -139,7 +141,7 @@
     .motiv-quote .em { color: var(--accent-lime); }
 
     #nav {
-      position: static; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 6px;
+      position: static; width: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; gap: 6px;
       padding: 8px 8px; background: rgba(10,10,10,.92); border: 1px solid var(--border); border-radius: 10px;
       font-family: var(--ff-mono); font-size: 12px; color: var(--muted);
     }
@@ -195,7 +197,7 @@
       #stage { position: static; display: block; }
       #scaler { width: 100% !important; height: auto !important; transform: none !important; }
       .slide { position: relative !important; display: block !important; width: 1600px !important; height: 900px !important; page-break-after: always; opacity: 1 !important; print-color-adjust: exact; }
-      #bottom-dock, #progress, .speaker-note, .modal { display: none !important; }
+      #top-qr, #bottom-dock, #progress, .speaker-note, .modal { display: none !important; }
     }
   </style>
 </head>
@@ -400,16 +402,17 @@
   </div>
 </div>
 
-<aside id="bottom-dock" class="bottom-dock" aria-label="QR, AI a navigace">
-  <a id="dock-qr" class="dock-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener" title="Materiály">
-    <img id="dock-qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&amp;data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR kód materiálů">
-  </a>
-  <div id="dock-ai-mount"></div>
+<a id="top-qr" class="top-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener" title="Materiály">
+  <img id="top-qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=400x400&amp;data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR kód materiálů">
+</a>
+
+<aside id="bottom-dock" class="bottom-dock" aria-label="Navigace a AI">
   <nav id="nav">
     <button type="button" id="prev" aria-label="Předchozí">←</button>
     <span id="counter">1 / 8</span>
     <button type="button" id="next" aria-label="Další">→</button>
   </nav>
+  <div id="dock-ai-mount"></div>
 </aside>
 
 <script>
@@ -419,35 +422,35 @@
   let i = 0;
   const prog = document.getElementById('progress');
   const counter = document.getElementById('counter');
-  const dockQr = document.getElementById('dock-qr');
-  const dockQrImg = document.getElementById('dock-qr-img');
+  const topQr = document.getElementById('top-qr');
+  const topQrImg = document.getElementById('top-qr-img');
   const QR_DEFAULT = 'https://taiemnik.github.io/odprdukprdu/';
   const QR_MATERIALY = 'https://taiemnik.github.io/odprdukprdu/materialy/';
   function qrApi(url) {
     return 'https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=' + encodeURIComponent(url);
   }
-  function updateDockQr(slideIndex) {
-    if (!dockQr || !dockQrImg) return;
+  function updateTopQr(slideIndex) {
+    if (!topQr || !topQrImg) return;
     const slideNum = slides[slideIndex]?.dataset?.n ? parseInt(slides[slideIndex].dataset.n, 10) : slideIndex + 1;
     if (slideNum === 8) {
-      dockQr.classList.add('hidden');
+      topQr.classList.add('hidden');
       return;
     }
-    dockQr.classList.remove('hidden');
+    topQr.classList.remove('hidden');
     const url = slideNum === 6 ? QR_MATERIALY : QR_DEFAULT;
-    dockQr.href = url;
-    dockQrImg.src = qrApi(url);
+    topQr.href = url;
+    topQrImg.src = qrApi(url);
   }
   function show(n){
     i = (n + total) % total;
     slides.forEach((s,j) => s.classList.toggle('active', j === i));
     counter.textContent = (i+1) + ' / ' + total;
     prog.style.width = ((i+1)/total*100) + '%';
-    updateDockQr(i);
+    updateTopQr(i);
   }
   document.getElementById('prev').onclick = () => show(i-1);
   document.getElementById('next').onclick = () => show(i+1);
-  updateDockQr(0);
+  updateTopQr(0);
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); show(i+1); }
     if (e.key === 'ArrowLeft') show(i-1);
