@@ -10,7 +10,7 @@ Přednáška Vibecoding Festival · CERNA.AI · Ambasadorství MSK.
 |-------|------|
 | `index.html` | Landing + QR |
 | `prezentace/` | 8 slidů 16:9, PDF export (Ctrl+P) |
-| `materialy/` | Kryton hub — Claude / ChatGPT / Gemini |
+| `materialy/` | Asistent na prd — Claude / ChatGPT / Gemini + popup |
 | `download/` | Markdown ke stažení |
 
 ## Deploy z vaultu

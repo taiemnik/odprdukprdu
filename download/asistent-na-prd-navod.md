@@ -8,11 +8,11 @@
 
 | Používáš… | Stáhni soubor | Kam to vložit |
 |-----------|---------------|---------------|
-| **Claude** | `Asistent na prd-claude-project.md` | Project → **Project Instructions** (celý obsah) |
-| **ChatGPT** | `Asistent na prd-chatgpt-gpt.md` | GPT Builder → Name, Description, **Instructions**, Conversation starters |
-| **Gemini** | `Asistent na prd-gemini-gem.md` | Gems → New Gem → **Instructions** |
+| **Claude** | `asistent-na-prd-claude.md` | Project → **Project Instructions** (celý obsah) |
+| **ChatGPT** | `asistent-na-prd-chatgpt.md` | GPT Builder → Name, Description, **Instructions**, Conversation starters |
+| **Gemini** | `asistent-na-prd-gemini.md` | Gems → New Gem → **Instructions** |
 
-Už máš PRD od Asistent na prda a stavíš v **Cursor / Lovable**? Použij jen výstupní blok z `master-prompt-vzor.md` — personu nepotřebuješ znovu.
+Už máš PRD od asistenta a stavíš v **Cursor / Lovable**? Použij jen výstupní blok z `master-prompt-vzor.md` — personu nepotřebuješ znovu.
 
 ---
 
