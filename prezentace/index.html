@@ -113,10 +113,13 @@
     .goodbye-slide { background: radial-gradient(ellipse 70% 50% at 80% 80%, rgba(217,250,167,.08) 0%, transparent 55%), var(--bg-dark); }
     .goodbye-inner { gap: 48px; align-items: center; text-align: center; justify-content: center; }
     .motiv-title { font-size: 60px; font-weight: 800; color: var(--muted); letter-spacing: -.02em; }
+    .motiv-sub { font-size: 32px; font-weight: 400; font-style: italic; color: var(--muted); letter-spacing: .01em; }
     .motiv-quote {
-      font-size: 68px; font-weight: 800; line-height: 1.18; letter-spacing: -.025em;
-      max-width: 1200px; font-style: italic;
+      font-size: 68px; font-weight: 800; line-height: 1.22; letter-spacing: -.025em;
+      max-width: 1200px;
     }
+    .motiv-quote p { margin: 0; }
+    .motiv-quote p + p { margin-top: 12px; }
     .motiv-quote .em { color: var(--accent-lime); font-style: italic; }
 
     #nav { position: fixed; bottom: 0; right: 0; z-index: 100; display: flex; align-items: center; gap: 12px; padding: 12px 18px; background: rgba(10,10,10,.92); border-radius: 12px 0 0 0; font-family: var(--ff-mono); font-size: 14px; color: var(--muted); }
@@ -351,7 +354,11 @@
     <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner goodbye-inner">
       <h2 class="motiv-title">Motivační citát</h2>
-      <p class="motiv-quote">Tvůrce netvoří PRD na prd — tvořít z <span class="em">prdu</span> PRD.</p>
+      <p class="motiv-sub">… vůbec ho netvořila AI</p>
+      <div class="motiv-quote">
+        <p>Tvůrce netvoří PRD na prd.</p>
+        <p>Tvoří z <span class="em">PRDu</span> kuličku.</p>
+      </div>
     </div>
     <div class="speaker-note">Záměrně trapný citát. Pak ukončit.</div>
   </div>
