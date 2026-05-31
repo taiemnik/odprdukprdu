@@ -12,7 +12,7 @@
       --bg-dark: #0a0a0a; --bg-card: #141414; --text: #f5f5f5; --muted: #b4b8c0;
       --accent-lime: #d9faa7; --accent-strong: #e8ffb8; --border: #2a2a2a; --danger: #f87171;
       --safe: 80px; --ff-sans: 'Inter', system-ui, sans-serif; --ff-mono: 'JetBrains Mono', monospace;
-      --qr-size: 148px;
+      --qr-size: 240px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { width: 100%; height: 100%; overflow: hidden; background: #050505; font-family: var(--ff-sans); color: var(--text); }
@@ -67,36 +67,38 @@
     .bq-list { max-width: 900px; margin: 0 auto; text-align: left; gap: 28px; }
     .bq-list li { font-size: 36px; }
 
-    .plat-btns { display: flex; flex-direction: column; gap: 14px; width: 100%; }
-    .plat-btn { font-family: inherit; font-size: 22px; font-weight: 700; padding: 18px 22px; border-radius: 14px; border: 1px solid rgba(217,250,167,.35); background: rgba(217,250,167,.08); color: var(--accent-lime); cursor: pointer; text-align: left; transition: background .15s, border-color .15s; }
-    .plat-btn:hover { background: rgba(217,250,167,.16); border-color: var(--accent-lime); }
-    .plat-btn.gpt { border-color: rgba(16,163,127,.45); color: #6ee7b7; background: rgba(16,163,127,.08); }
-    .plat-btn.claude { border-color: rgba(217,119,87,.45); color: #fdba74; background: rgba(217,119,87,.08); }
-    .plat-btn.gem { border-color: rgba(66,133,244,.45); color: #93c5fd; background: rgba(66,133,244,.08); }
+    .split-side.plat-side { min-width: 420px; }
+    .plat-btns { display: flex; flex-direction: column; gap: 16px; width: 100%; }
+    .plat-btn {
+      font-family: inherit; font-size: 24px; font-weight: 700;
+      padding: 20px 24px; border-radius: 12px; border: none;
+      background: var(--accent-lime); color: #0a0a0a;
+      cursor: pointer; text-align: center; width: 100%;
+      box-shadow: 0 4px 0 rgba(217,250,167,.25), 0 8px 24px rgba(0,0,0,.35);
+      transition: filter .15s, transform .1s;
+    }
+    .plat-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .plat-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(217,250,167,.2); }
     .disclaimer { font-size: 22px; color: var(--muted); font-style: italic; margin-top: 8px; }
 
-    .inspire-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px 40px; flex: 1; align-content: center; max-width: 1200px; }
-    .inspire-grid a {
-      font-size: 28px; font-weight: 600; color: var(--accent-lime); text-decoration: none;
-      padding: 16px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px;
+    .inspire-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 32px; flex: 1; align-content: center; max-width: 1320px; }
+    .inspire-item {
+      display: block; text-decoration: none; color: inherit;
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 18px 22px; transition: border-color .15s, transform .15s;
     }
-    .inspire-grid a::before { content: '→'; font-family: var(--ff-mono); opacity: .7; }
-    .inspire-grid a:hover { text-decoration: underline; }
-    .inspire-grid a.pending { color: var(--muted); pointer-events: none; }
-    .inspire-grid a.pending::after { content: ' (brzy)'; font-size: 18px; font-weight: 400; font-family: var(--ff-mono); }
+    .inspire-item:hover { border-color: rgba(217,250,167,.4); transform: translateY(-2px); }
+    .inspire-title { display: block; font-size: 26px; font-weight: 700; color: var(--accent-lime); margin-bottom: 6px; }
+    .inspire-desc { display: block; font-size: 20px; line-height: 1.35; color: var(--muted); font-weight: 400; }
 
     .goodbye-slide { background: radial-gradient(ellipse 70% 50% at 80% 80%, rgba(217,250,167,.08) 0%, transparent 55%), var(--bg-dark); }
-    .goodbye-inner { gap: 40px; align-items: flex-start; }
-    .slop-quote {
-      font-size: 32px; line-height: 1.5; color: var(--muted); font-style: italic; font-weight: 400;
-      max-width: 1150px; padding: 28px 36px; border-left: 4px solid rgba(180,184,192,.35);
+    .goodbye-inner { gap: 48px; align-items: center; text-align: center; justify-content: center; }
+    .motiv-title { font-size: 56px; font-weight: 800; color: var(--muted); letter-spacing: -.02em; }
+    .motiv-quote {
+      font-size: 64px; font-weight: 800; line-height: 1.2; letter-spacing: -.025em;
+      max-width: 1200px; font-style: italic;
     }
-    .slop-punchline {
-      font-size: 52px; font-weight: 800; line-height: 1.15; letter-spacing: -.02em;
-      max-width: 1100px;
-    }
-    .slop-punchline .em { color: var(--accent-lime); font-style: normal; }
-    .goodbye-cta { font-family: var(--ff-mono); font-size: 28px; color: var(--accent-lime); font-weight: 700; }
+    .motiv-quote .em { color: var(--accent-lime); font-style: italic; }
 
     #nav { position: fixed; bottom: 0; right: 0; z-index: 100; display: flex; align-items: center; gap: 12px; padding: 12px 18px; background: rgba(10,10,10,.92); border-radius: 12px 0 0 0; font-family: var(--ff-mono); font-size: 14px; color: var(--muted); }
     #nav button { width: 40px; height: 40px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; color: var(--text); cursor: pointer; font-size: 18px; }
@@ -147,26 +149,26 @@
 
   <!-- 1 Hero -->
   <div class="slide hero-slide active" data-n="1">
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener" title="Materiály"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
+    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener" title="Materiály"><img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner" style="justify-content:flex-end;padding-bottom:130px;">
       <div class="scrabble"><div class="tile">P</div><div class="tile">R</div><div class="tile">D</div></div>
       <h1 class="hero-h1">Od <span class="em">prdu</span> k PRDu</h1>
       <p class="hero-sub">Jak proměnit nápad v aplikaci, kterou někdo skutečně použije.</p>
     </div>
-    <div class="hero-meta">Josef Procházka · Vibecoding Festival · 2. 6. 2026</div>
+    <div class="hero-meta">Josef Procházka · Vibecoding Festival · Ostrava · 2. 6. 2026</div>
     <div class="speaker-note">Přiznej GitHub. Před půl rokem jsi nevěděl, co je commit.</div>
   </div>
 
   <!-- 2 PRD -->
   <div class="slide" data-n="2">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
+    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner" style="gap:24px;">
       <h2 class="h2">PRD je <span class="em">mapa</span> vašeho nápadu</h2>
       <div class="compare-grid">
         <div class="compare-row">
           <div class="compare-cell bad"><div class="label">Špatně</div><p class="quote">„Chci tabulku s usneseními."</p></div>
-          <div class="compare-cell good"><div class="label">Správně</div><p class="quote">„Úředník ztrácí 4 h/týden v PDF. Cíl: podklad do 30 s."</p></div>
+          <div class="compare-cell good"><div class="label">Správně</div><p class="quote">„Úředník ztrácí hodinu týdně hledáním v PDF. Cíl: podklad do 30 s."</p></div>
         </div>
         <div class="compare-row">
           <div class="compare-cell bad"><div class="label">Špatně</div><p class="quote">„Chci QR kód pro platby."</p></div>
@@ -184,7 +186,7 @@
   <!-- 3 Vibe -->
   <div class="slide bq-slide" data-n="3">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
+    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner bq-inner">
       <h2 class="bq-title">Řešte <span class="em">vibe</span>,<br>ne aplikaci</h2>
       <ul class="blist bq-list">
@@ -200,7 +202,7 @@
   <!-- 4 Začněte s málem -->
   <div class="slide" data-n="4">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
+    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner">
       <h2 class="h2">Začněte s <span class="em">málem</span></h2>
       <div class="split">
@@ -221,7 +223,7 @@
   <!-- 5 Bezpečnost -->
   <div class="slide" data-n="5">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
+    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner">
       <h2 class="h2">Bezpečnost:<br>ptejte se <span class="em">JESTLI</span>, ne JAK</h2>
       <div class="split">
@@ -248,20 +250,20 @@
   <!-- 6 Asistent na prd -->
   <div class="slide" data-n="6">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/materialy/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2Fmaterialy%2F" alt="QR"></a>
+    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/materialy/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2Fmaterialy%2F" alt="QR"></a>
     <div class="slide-inner">
-      <h2 class="h2">Asistent na <span class="em">prd</span></h2>
+      <h2 class="h2">Asistent na <span class="em">PRD</span></h2>
       <div class="split">
         <div class="split-main">
           <p class="lead">Zjistí, co chcete. Ořeže balast. Udělá PRD.</p>
           <p class="disclaimer">Nepoužívat, pokud nemáte rádi Červeného trpaslíka.</p>
         </div>
-        <div class="split-side">
+        <div class="split-side plat-side">
           <p class="flow-label">Vyberte platformu</p>
           <div class="plat-btns">
-            <button type="button" class="plat-btn gpt" data-plat="gpt">ChatGPT · Custom GPT</button>
-            <button type="button" class="plat-btn claude" data-plat="claude">Claude · Project</button>
-            <button type="button" class="plat-btn gem" data-plat="gem">Gemini · Gem</button>
+            <button type="button" class="plat-btn" data-plat="gpt">ChatGPT · Custom GPT</button>
+            <button type="button" class="plat-btn" data-plat="claude">Claude · Project</button>
+            <button type="button" class="plat-btn" data-plat="gem">Gemini · Gem</button>
           </div>
         </div>
       </div>
@@ -272,16 +274,34 @@
   <!-- 7 Příklady -->
   <div class="slide" data-n="7">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
+    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner" style="gap:28px;">
       <h2 class="h2">Příklady pro <span class="em">inspiraci</span></h2>
       <div class="inspire-grid">
-        <a href="https://claude.ai/public/artifacts/951199b2-2cb4-4432-9626-167b5171d477" target="_blank" rel="noopener">QR platba pro rodiče školky</a>
-        <a href="https://claude.ai/public/artifacts/b6ce99aa-1611-493b-a81d-bebe302bc45d" target="_blank" rel="noopener">Skill tree</a>
-        <a href="https://claude.ai/public/artifacts/08b33f08-e135-4a54-a3fc-290538fa4e38" target="_blank" rel="noopener">RSVP</a>
-        <a href="https://claude.ai/public/artifacts/847fdedd-7f23-4c56-b287-f36464cbf4af" target="_blank" rel="noopener">PDF to text</a>
-        <a href="https://claude.ai/public/artifacts/49568082-7e72-411d-a8f5-bebf8add5628" target="_blank" rel="noopener">Lanparty team mixer</a>
-        <a href="https://claude.ai/public/artifacts/827b3c5f-dd13-4e9a-975a-3f8abd304c13" target="_blank" rel="noopener">Psaní 10 game</a>
+        <a class="inspire-item" href="https://claude.ai/public/artifacts/951199b2-2cb4-4432-9626-167b5171d477" target="_blank" rel="noopener">
+          <span class="inspire-title">QR platba pro rodiče školky</span>
+          <span class="inspire-desc">Rodič zadá částku jednou — aplikace vygeneruje QR se správným VS.</span>
+        </a>
+        <a class="inspire-item" href="https://claude.ai/public/artifacts/b6ce99aa-1611-493b-a81d-bebe302bc45d" target="_blank" rel="noopener">
+          <span class="inspire-title">Skill tree</span>
+          <span class="inspire-desc">Interaktivní RPG strom dovedností — devět tříd v jednom artefaktu.</span>
+        </a>
+        <a class="inspire-item" href="https://claude.ai/public/artifacts/08b33f08-e135-4a54-a3fc-290538fa4e38" target="_blank" rel="noopener">
+          <span class="inspire-title">RSVP</span>
+          <span class="inspire-desc">Rychlé čtení po slovech — zrychlení bez ztráty soustředění.</span>
+        </a>
+        <a class="inspire-item" href="https://claude.ai/public/artifacts/847fdedd-7f23-4c56-b287-f36464cbf4af" target="_blank" rel="noopener">
+          <span class="inspire-title">PDF to text</span>
+          <span class="inspire-desc">Vytáhne text z PDF a odstraní hlavičky a patičky.</span>
+        </a>
+        <a class="inspire-item" href="https://claude.ai/public/artifacts/49568082-7e72-411d-a8f5-bebf8add5628" target="_blank" rel="noopener">
+          <span class="inspire-title">Lanparty team mixer</span>
+          <span class="inspire-desc">Snake draft — vyvážené týmy na LAN bez hádek u počítače.</span>
+        </a>
+        <a class="inspire-item" href="https://claude.ai/public/artifacts/827b3c5f-dd13-4e9a-975a-3f8abd304c13" target="_blank" rel="noopener">
+          <span class="inspire-title">Psaní 10 game</span>
+          <span class="inspire-desc">Dračí quest — učte se psát všemi deseti prsty hrou.</span>
+        </a>
       </div>
     </div>
     <div class="speaker-note">2 min. Klikni na odkaz — nebo inspirace na webu taiemnik.github.io/odprdukprdu/inspirace/</div>
@@ -290,14 +310,12 @@
   <!-- 8 Konec -->
   <div class="slide goodbye-slide" data-n="8">
     <div class="slide-bar"></div>
-    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
+    <a class="slide-qr" href="https://taiemnik.github.io/odprdukprdu/" target="_blank" rel="noopener"><img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https%3A%2F%2Ftaiemnik.github.io%2Fodprdukprdu%2F" alt="QR"></a>
     <div class="slide-inner goodbye-inner">
-      <div class="scrabble"><div class="tile">P</div><div class="tile">R</div><div class="tile">D</div></div>
-      <p class="slop-quote">V dnešní dynamicky se měnící digitální krajině — vaše nápady nejsou jen nápady. Jsou to semínka transformace, která má moc redefinovat to, jak společně reimaginujeme budoucnost — tiše se díváme do obrazovky, tiše přemýšlíme, odpovídáme tiše a nahlas, proaktivně nasloucháme prostoru možností, holisticky propojujeme myšlenky a akce, kde lidská kreativita a AI-driven inovace vstupují do synergického dialogu, autenticky unlockují váš plný potenciál a společně budují smysluplnou hodnotu pro všechny stakeholdery.</p>
-      <p class="slop-punchline">Tvůrce netvoří <span class="em">prd</span> — tvoří z prd <span class="em">PRD</span>.</p>
-      <p class="goodbye-cta">taiemnik.github.io/odprdukprdu</p>
+      <h2 class="motiv-title">Motivační citát</h2>
+      <p class="motiv-quote">Tvůrce netvoří PRD na prd — tvořít z <span class="em">prdu</span> PRD.</p>
     </div>
-    <div class="speaker-note">Záměrný AI slop. Pak ukončit.</div>
+    <div class="speaker-note">Záměrně trapný citát. Pak ukončit.</div>
   </div>
 
 </div></div>
