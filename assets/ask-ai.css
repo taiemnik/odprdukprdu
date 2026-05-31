@@ -1,0 +1,121 @@
+/* Plovoucí „Zeptej se AI“ — sdílené pro odprdukprdu web + prezentaci */
+.ai-palette-container {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1600;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* Prezentace má dole pravý nav — FAB posunout výš */
+body.page-prezentace .ai-palette-container {
+  bottom: 58px;
+}
+
+.ai-palette-btn {
+  background: #d9faa7;
+  color: #0a0a0a;
+  border: 1px solid rgba(217, 250, 167, 0.5);
+  border-radius: 999px;
+  padding: 11px 16px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 8px 28px rgba(217, 250, 167, 0.22);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ai-palette-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 32px rgba(217, 250, 167, 0.32);
+}
+
+.ai-palette-menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+  width: min(300px, calc(100vw - 36px));
+  display: none;
+  border: 1px solid #2a2a2a;
+  border-radius: 14px;
+  background: #141414;
+  padding: 8px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
+}
+
+.ai-palette-container.open .ai-palette-menu {
+  display: block;
+}
+
+.ai-menu-header {
+  color: #9ca3af;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 6px 10px 8px;
+}
+
+.ai-menu-item {
+  display: block;
+  width: 100%;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #f5f5f5;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.ai-menu-item:hover,
+.ai-menu-item:focus-visible {
+  border-color: #2a2a2a;
+  background: #1c1c1c;
+  outline: none;
+}
+
+.ai-menu-divider {
+  height: 1px;
+  background: #2a2a2a;
+  margin: 6px 4px;
+}
+
+.ai-menu-hint {
+  color: #9ca3af;
+  font-size: 12px;
+  line-height: 1.45;
+  padding: 4px 10px 8px;
+}
+
+.ai-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 90px;
+  transform: translateX(-50%) translateY(12px);
+  background: #141414;
+  color: #f5f5f5;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 13px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 1700;
+}
+
+.ai-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media print {
+  .ai-palette-container,
+  .ai-toast {
+    display: none !important;
+  }
+}
